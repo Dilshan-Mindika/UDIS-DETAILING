@@ -1,5 +1,6 @@
 import { Hero } from "@/components/sections/Hero";
 import { Stats } from "@/components/sections/Stats";
+import { BrandCarousel } from "@/components/sections/BrandCarousel";
 import { ServicesPreview } from "@/components/sections/ServicesPreview";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <Hero />
       <Stats />
+      <BrandCarousel />
       <ServicesPreview />
 
       {/* Testimonials Placeholder */}
