@@ -4,6 +4,8 @@ import { BrandCarousel } from "@/components/sections/BrandCarousel";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { ServicesPreview } from "@/components/sections/ServicesPreview";
 import { BusinessValues } from "@/components/sections/BusinessValues";
+import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
+
 
 export default function Home() {
   return (
@@ -14,6 +16,8 @@ export default function Home() {
       <AboutSection />
       <ServicesPreview />
       <BusinessValues />
+      <WhyChooseUs />
+
 
       {/* Testimonials Placeholder */}
       <section className="py-24 bg-custom-gray/20">
