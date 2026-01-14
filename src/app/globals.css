@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Midnight Azure Palette */
+    --background: 240 10% 2%;
+    /* #050505 - Deepest Black */
+    --foreground: 0 0% 96%;
+    /* #F5F5F5 - White Smoke */
+
+    --card: 240 10% 4%;
+    /* #0A0A0A - Slightly lighter black */
+    --card-foreground: 0 0% 96%;
+
+    --popover: 240 10% 4%;
+    --popover-foreground: 0 0% 96%;
+
+    --primary: 221 83% 53%;
+    /* #2563EB - Royal Blue */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 91% 60%;
+    /* #3B82F6 - Lighter Blue */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 5% 15%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 199 89% 60%;
+    /* #38BDF8 - Sky/Cyan Accent */
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5% 15%;
+    --input: 240 5% 15%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased selection:bg-primary/30;
+  }
+}
+
+/* Smooth Scroll */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+/* Utilities */
+.glass-panel {
+  @apply bg-black/40 backdrop-blur-md border border-white/10;
+}
+
+.text-gradient-blue {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+}

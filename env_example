@@ -1,0 +1,8 @@
+# Google SMTP Credentials
+# 1. Enable 2-Step Verification in your Google Account.
+# 2. Go to App Passwords.
+# 3. Create a new App Password for "Mail".
+# 4. Use your email and that 16-character password here.
+
+SMTP_EMAIL=your-email@gmail.com
+SMTP_PASSWORD=your-app-password
