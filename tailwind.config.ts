@@ -55,6 +55,7 @@ const config: Config = {
                     black: "#050505",
                     blue: "#2563EB",
                     cyan: "#38BDF8",
+                    gold: "#FFD700",
                 }
             },
             borderRadius: {
