@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
+import { PageHero } from "@/components/sections/PageHero";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 function SpotlightCard({ index, service }: { index: number, service: any }) {
@@ -226,44 +227,14 @@ export default function ServicesPage() {
     return (
         <div className="bg-black min-h-screen">
             {/* Hero Section */}
-            <section className="relative py-44 overflow-hidden flex items-center justify-center min-h-[75vh]">
-                <div className="absolute inset-0 z-0">
-                    <motion.div
-                        animate={{
-                            scale: [1, 1.05, 1],
-                            opacity: [0.6, 0.7, 0.6]
-                        }}
-                        transition={{
-                            duration: 12,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                        }}
-                        className="w-full h-full"
-                    >
-                        <img
-                            src="/images/services_hero.png"
-                            alt="Professional Detailing Studio"
-                            className="w-full h-full object-cover"
-                        />
-                    </motion.div>
-                    <div className="absolute inset-0 bg-gradient-to-b from-black via-black/40 to-black"></div>
-                </div>
-
-                {/* Cyber Grid Overlay */}
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(0,100,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,100,255,0.05)_1px,transparent_1px)] bg-[size:100px_100px] opacity-20 pointer-events-none z-10"></div>
-
-                <div className="container mx-auto px-4 relative z-20 text-center">
-                    <ScrollReveal>
-                        <span className="inline-block px-4 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">Expert Auto Care</span>
-                        <h1 className="text-5xl md:text-7xl font-black font-orbitron text-white mb-6 leading-tight">
-                            OUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400">SERVICES</span>
-                        </h1>
-                        <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto font-light leading-relaxed">
-                            Professional Auto Detailing for a Flawless Finish. Meticulous care for every inch of your vehicle.
-                        </p>
-                    </ScrollReveal>
-                </div>
-            </section>
+            <PageHero
+                badgeIcon={Settings}
+                badgeText="EXPERT.AUTO_CARE_v1.0"
+                title="OUR"
+                highlightedTitle="SERVICES"
+                subtitle="Professional Auto Detailing for a Flawless Finish. Meticulous care for every inch of your vehicle."
+                backgroundImage="/images/services_hero.png"
+            />
 
             {/* Passionate Experts Section */}
             <section className="py-24 relative overflow-hidden">

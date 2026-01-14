@@ -1,5 +1,6 @@
 "use client";
 
+import { PageHero } from "@/components/sections/PageHero";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import {
     CheckCircle2, ArrowRight, ShieldCheck,
@@ -250,62 +251,20 @@ export default function PackagesPage() {
     return (
         <div className="min-h-screen bg-black text-white selection:bg-blue-500/30 selection:text-white">
             {/* Hero Section */}
-            <section className="relative pt-40 pb-32 overflow-hidden">
-                <div className="absolute inset-0 z-0 scale-110">
-                    <img
-                        src="https://images.unsplash.com/photo-1620706122118-206fc3c15562?q=80&w=2000&auto=format&fit=crop"
-                        alt="High-End Detailing Studio"
-                        className="w-full h-full object-cover opacity-40 grayscale-[0.2] contrast-[1.1]"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
-                    {/* Atmospheric Glows */}
-                    <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[180px] animate-pulse"></div>
-                    <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[180px] animate-pulse" style={{ animationDelay: '2s' }}></div>
+            <PageHero
+                badgeIcon={Zap}
+                badgeText="SYSTEM.PRICING_MATRIX"
+                title="ELITE"
+                highlightedTitle="PACKAGES"
+                subtitle="Precision Engineered Detailing Perfected. Discover the science of restoration."
+                backgroundImage="https://images.unsplash.com/photo-1620706122118-206fc3c15562?q=80&w=2000&auto=format&fit=crop"
+            >
+                <div className="flex gap-4 mt-12 justify-center">
+                    <div className="h-1.5 w-24 bg-blue-600 rounded-full shadow-[0_0_15px_rgba(37,99,235,0.5)]"></div>
+                    <div className="h-1.5 w-12 bg-blue-600/30 rounded-full"></div>
+                    <div className="h-1.5 w-6 bg-blue-600/10 rounded-full"></div>
                 </div>
-
-                {/* Vertical Scanner Pulse */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-                    <motion.div
-                        animate={{ top: ["-100%", "200%"] }}
-                        transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                        className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500/40 to-transparent shadow-[0_0_20px_rgba(59,130,246,0.5)]"
-                    />
-                </div>
-
-                <div className="container mx-auto px-4 relative z-20">
-                    <ScrollReveal>
-                        <div className="flex flex-col items-center max-w-5xl mx-auto">
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                className="inline-flex items-center gap-4 bg-black/50 border border-white/10 backdrop-blur-xl px-6 py-2 rounded-full mb-10 shadow-2xl"
-                            >
-                                <span className="relative flex h-2 w-2">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                                </span>
-                                <span className="text-xs font-mono text-blue-400 tracking-[0.5em] uppercase font-black">SYTEM.PRICING_MATRIX</span>
-                                <div className="h-4 w-[1px] bg-white/10"></div>
-                                <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">UDI_v2.5</span>
-                            </motion.div>
-
-                            <h1 className="text-6xl md:text-9xl font-black font-orbitron text-white mb-8 uppercase tracking-tighter leading-[0.8] text-center">
-                                ELITE <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-500 animate-gradient-x">PACKAGES</span>
-                            </h1>
-
-                            <p className="text-xl md:text-3xl text-gray-400 max-w-3xl mx-auto font-light leading-snug text-center">
-                                Precision Engineered Detailing <span className="text-white font-medium italic underline decoration-blue-500/50 underline-offset-8">Perfected</span>. Discover the science of restoration.
-                            </p>
-
-                            <div className="flex gap-4 mt-12">
-                                <div className="h-1.5 w-24 bg-blue-600 rounded-full shadow-[0_0_15px_rgba(37,99,235,0.5)]"></div>
-                                <div className="h-1.5 w-12 bg-blue-600/30 rounded-full"></div>
-                                <div className="h-1.5 w-6 bg-blue-600/10 rounded-full"></div>
-                            </div>
-                        </div>
-                    </ScrollReveal>
-                </div>
-            </section>
+            </PageHero>
 
             {/* Main Packages Section */}
             <section className="py-24 relative">

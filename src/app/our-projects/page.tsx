@@ -1,5 +1,6 @@
 "use client";
 
+import { PageHero } from "@/components/sections/PageHero";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import {
     Star, Quote, CheckCircle2, Info, ChevronRight,
@@ -270,42 +271,14 @@ export default function ProjectsPage() {
     return (
         <div className="min-h-screen bg-black text-white selection:bg-blue-500/30">
             {/* Hero Section */}
-            <section className="relative pt-40 pb-32 overflow-hidden">
-                <div className="absolute inset-0 z-0">
-                    <img
-                        src="https://images.unsplash.com/photo-1552933529-e359b24772bf?q=80&w=2000"
-                        alt="Detaling Excellence"
-                        className="w-full h-full object-cover opacity-20 grayscale"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black" />
-                </div>
-
-                <div className="container mx-auto px-4 relative z-10">
-                    <ScrollReveal>
-                        <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                className="inline-flex items-center gap-3 bg-blue-500/10 border border-blue-500/20 px-6 py-2 rounded-full mb-8 backdrop-blur-xl"
-                            >
-                                <Camera size={14} className="text-blue-500" />
-                                <span className="text-[10px] font-mono text-blue-400 tracking-[0.4em] uppercase font-black">Archive.Showcase_v2.5</span>
-                            </motion.div>
-
-                            <h1 className="text-6xl md:text-9xl font-black font-orbitron text-white uppercase tracking-tighter leading-[0.8] mb-10">
-                                OUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-400 italic">PROJECTS</span>
-                            </h1>
-
-                            <p className="text-xl md:text-2xl text-gray-400 font-light max-w-2xl leading-relaxed italic">
-                                Witness the science of restoration. Discover our showcased portfolio of <span className="text-white font-medium underline decoration-blue-500/50 underline-offset-8">Auto Detailing Excellence</span>.
-                            </p>
-                        </div>
-                    </ScrollReveal>
-                </div>
-
-                {/* Vertical Scanner Line */}
-                <div className="absolute inset-y-0 right-1/4 w-px bg-gradient-to-b from-transparent via-blue-500/20 to-transparent hidden lg:block" />
-            </section>
+            <PageHero
+                badgeIcon={Camera}
+                badgeText="Archive.Showcase_v2.5"
+                title="OUR"
+                highlightedTitle="PROJECTS"
+                subtitle="Witness the science of restoration. Discover our showcased portfolio of Auto Detailing Excellence."
+                backgroundImage="/images/projects/prado_transformation_detailing_1768429715065.png"
+            />
 
             {/* Project Grid */}
             <section className="py-24 relative">
@@ -427,7 +400,7 @@ export default function ProjectsPage() {
             <section className="py-40 relative overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2000"
+                        src="/images/projects/showroom_shine_detailing_1768429730062.png"
                         alt="CTA Background"
                         className="w-full h-full object-cover opacity-30 contrast-[1.2] grayscale-[0.5]"
                     />

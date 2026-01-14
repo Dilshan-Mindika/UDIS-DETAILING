@@ -1,5 +1,6 @@
 "use client";
 
+import { PageHero } from "@/components/sections/PageHero";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { motion } from "framer-motion";
@@ -14,55 +15,34 @@ export default function AboutPage() {
     return (
         <div className="bg-black min-h-screen">
             {/* Hero Section */}
-            <section className="relative py-32 overflow-hidden min-h-[80vh] flex items-center">
-                {/* Hero Background Image */}
-                <div className="absolute inset-0 z-0">
-                    <img
-                        src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?q=80&w=2000&auto=format&fit=crop"
-                        alt="Professional Detailing Studio"
-                        className="w-full h-full object-cover opacity-50"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black via-black/60 to-black"></div>
+            <PageHero
+                badgeIcon={Award}
+                badgeText="Legacy.Excellence_v4.2"
+                title="PASSION FOR"
+                highlightedTitle="PERFECTION"
+                subtitle="We are dedicated to bringing out the best in your vehicle with precision detailing, premium products, and an unmatched eye for perfection."
+                backgroundImage="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?q=80&w=2000&auto=format&fit=crop"
+            >
+                {/* Stats Strip */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-md hover:border-blue-500/30 transition-all duration-500 mt-12">
+                    <div className="text-center group">
+                        <span className="block text-4xl font-bold text-white mb-1 group-hover:scale-110 transition-transform duration-300">30+</span>
+                        <span className="text-blue-400 text-sm uppercase tracking-wider font-bold">Partner Brands</span>
+                    </div>
+                    <div className="text-center group">
+                        <span className="block text-4xl font-bold text-white mb-1 group-hover:scale-110 transition-transform duration-300">100%</span>
+                        <span className="text-blue-400 text-sm uppercase tracking-wider font-bold">Satisfaction</span>
+                    </div>
+                    <div className="text-center group">
+                        <span className="block text-4xl font-bold text-white mb-1 group-hover:scale-110 transition-transform duration-300">5k+</span>
+                        <span className="text-blue-400 text-sm uppercase tracking-wider font-bold">Cars Detailed</span>
+                    </div>
+                    <div className="text-center group">
+                        <span className="block text-4xl font-bold text-white mb-1 group-hover:scale-110 transition-transform duration-300">5.0</span>
+                        <span className="text-blue-400 text-sm uppercase tracking-wider font-bold">Star Rating</span>
+                    </div>
                 </div>
-
-                {/* Abstract Line Grid */}
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(0,100,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,100,255,0.05)_1px,transparent_1px)] bg-[size:100px_100px] opacity-20 pointer-events-none z-10"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[150px] pointer-events-none z-10"></div>
-
-                <div className="container mx-auto px-4 relative z-20 text-center">
-                    <ScrollReveal>
-                        <h1 className="text-5xl md:text-7xl font-black font-orbitron text-white mb-8 leading-tight drop-shadow-2xl">
-                            PASSION FOR <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400">PERFECTION</span><br />
-                            <span className="text-2xl md:text-4xl text-gray-200 uppercase tracking-widest">Excellence in Every Detail</span>
-                        </h1>
-                        <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 font-light">
-                            We are dedicated to bringing out the best in your vehicle with precision detailing, premium products, and an unmatched eye for perfection.
-                        </p>
-                    </ScrollReveal>
-
-                    {/* Stats Strip */}
-                    <ScrollReveal delay={0.2}>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-md hover:border-blue-500/30 transition-all duration-500">
-                            <div className="text-center group">
-                                <span className="block text-4xl font-bold text-white mb-1 group-hover:scale-110 transition-transform duration-300">30+</span>
-                                <span className="text-blue-400 text-sm uppercase tracking-wider font-bold">Partner Brands</span>
-                            </div>
-                            <div className="text-center group">
-                                <span className="block text-4xl font-bold text-white mb-1 group-hover:scale-110 transition-transform duration-300">100%</span>
-                                <span className="text-blue-400 text-sm uppercase tracking-wider font-bold">Satisfaction</span>
-                            </div>
-                            <div className="text-center group">
-                                <span className="block text-4xl font-bold text-white mb-1 group-hover:scale-110 transition-transform duration-300">5k+</span>
-                                <span className="text-blue-400 text-sm uppercase tracking-wider font-bold">Cars Detailed</span>
-                            </div>
-                            <div className="text-center group">
-                                <span className="block text-4xl font-bold text-white mb-1 group-hover:scale-110 transition-transform duration-300">5.0</span>
-                                <span className="text-blue-400 text-sm uppercase tracking-wider font-bold">Star Rating</span>
-                            </div>
-                        </div>
-                    </ScrollReveal>
-                </div>
-            </section>
+            </PageHero>
 
             {/* Vision Section */}
             <section className="py-24 relative overflow-hidden">
