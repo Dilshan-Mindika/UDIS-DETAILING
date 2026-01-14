@@ -43,7 +43,8 @@ export function Navbar() {
     // Animations
     const topBarY = useTransform(scrollY, [0, 50], [0, -150]);
     const mainNavWidth = useTransform(scrollY, [0, 100], ["100%", "95%"]);
-    const mainNavY = useTransform(scrollY, [0, 50], [0, -20]);
+    // Reduced Y offset to prevent clipping on mobile/tablet where padding is smaller
+    const mainNavY = useTransform(scrollY, [0, 50], [0, -2]);
     const navBorderOpacity = useTransform(scrollY, [0, 100], [0.1, 0.3]);
     const navBackdropConfig = useTransform(scrollY, [0, 100], ["blur(16px)", "blur(30px)"]);
 
@@ -95,7 +96,7 @@ export function Navbar() {
                 style={{ y: mainNavY, width: mainNavWidth }}
                 className={cn(
                     "pointer-events-auto relative container mx-auto px-2 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]",
-                    isScrolled ? "max-w-5xl" : "max-w-7xl"
+                    isScrolled ? "max-w-6xl lg:-mt-[4.5rem]" : "max-w-7xl"
                 )}
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -163,12 +164,17 @@ export function Navbar() {
                             </Button>
                         </div>
 
-                        {/* 2. Tablet Socials (md ONLY) */}
+                        {/* 2. Tablet Socials + Book (md ONLY) */}
                         <div className="hidden md:flex lg:hidden items-center gap-3">
                             <a href="#" className="text-white hover:text-primary transition-all hover:scale-110 drop-shadow-md"><Facebook size={18} /></a>
                             <a href="#" className="text-white hover:text-primary transition-all hover:scale-110 drop-shadow-md"><Instagram size={18} /></a>
                             <a href="#" className="text-white hover:text-primary transition-all hover:scale-110 drop-shadow-md"><Tiktok size={18} /></a>
                             <a href="#" className="text-white hover:text-primary transition-all hover:scale-110 drop-shadow-md"><Youtube size={18} /></a>
+
+                            {/* Tablet Book Button */}
+                            <Button size="sm" className="ml-2 h-8 bg-white text-black hover:bg-custom-gold text-[10px] font-bold px-4 rounded-full shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                                BOOK
+                            </Button>
                         </div>
 
                         {/* 3. Desktop Nav (lg+) */}
