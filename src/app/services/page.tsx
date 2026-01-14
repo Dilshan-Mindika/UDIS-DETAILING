@@ -10,8 +10,123 @@ import {
     ShieldAlert, BadgeCheck, Leaf
 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
+
+function SpotlightCard({ index, service }: { index: number, service: any }) {
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    function onMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+        const { left, top } = currentTarget.getBoundingClientRect();
+        mouseX.set(clientX - left);
+        mouseY.set(clientY - top);
+    }
+
+    // 3D Tilt Effect
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const mouseXSpring = useSpring(x);
+    const mouseYSpring = useSpring(y);
+
+    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["7deg", "-7deg"]);
+    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-7deg", "7deg"]);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+        const xPct = mouseX / width - 0.5;
+        const yPct = mouseY / height - 0.5;
+        x.set(xPct);
+        y.set(yPct);
+    };
+
+    const handleMouseLeave = () => {
+        x.set(0);
+        y.set(0);
+    };
+
+    return (
+        <motion.div
+            style={{
+                rotateX,
+                rotateY,
+                transformStyle: "preserve-3d",
+            }}
+            onMouseMove={(e) => {
+                onMouseMove(e);
+                handleMouseMove(e);
+            }}
+            onMouseLeave={handleMouseLeave}
+            className="group relative bg-neutral-900/60 border border-white/5 p-8 rounded-[2.5rem] hover:border-blue-500/50 transition-all duration-700 h-full backdrop-blur-[32px] overflow-hidden shadow-2xl"
+        >
+            {/* Spotlight Overlay */}
+            <motion.div
+                className="pointer-events-none absolute -inset-px rounded-[2.5rem] opacity-0 transition duration-300 group-hover:opacity-100"
+                style={{
+                    background: useMotionTemplate`
+                        radial-gradient(
+                            650px circle at ${mouseX}px ${mouseY}px,
+                            rgba(59, 130, 246, 0.15),
+                            transparent 80%
+                        )
+                    `,
+                }}
+            />
+
+            {/* Technical HUD Brackets */}
+            <div className="absolute top-6 left-6 w-8 h-8 border-t border-l border-white/10 group-hover:border-blue-500/50 transition-colors duration-500 pointer-events-none"></div>
+            <div className="absolute bottom-6 right-6 w-8 h-8 border-b border-r border-white/10 group-hover:border-blue-500/50 transition-colors duration-500 pointer-events-none"></div>
+
+            {/* Technical ID Tag */}
+            <div className="absolute top-8 left-16 flex items-center gap-2 opacity-20 group-hover:opacity-60 transition-opacity">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
+                <span className="text-[10px] font-mono text-white tracking-tighter uppercase whitespace-nowrap">UDI-SYS-{(index + 1).toString().padStart(3, '0')}</span>
+            </div>
+
+            {/* Stylized background number */}
+            <div className="absolute top-4 right-8 text-8xl font-black text-white/[0.03] font-orbitron select-none pointer-events-none group-hover:text-blue-500/10 transition-all duration-700 group-hover:scale-110">
+                {(index + 1).toString().padStart(2, '0')}
+            </div>
+
+            <div className="relative z-10" style={{ transform: "translateZ(60px)" }}>
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600/20 to-cyan-400/10 flex items-center justify-center text-blue-400 mb-8 group-hover:scale-110 transition-all duration-700 shadow-[inset_0_0_20px_rgba(59,130,246,0.1)] border border-white/5 group-hover:border-blue-500/40 group-hover:from-blue-600 group-hover:to-cyan-400 group-hover:text-white group-hover:shadow-[0_0_30px_rgba(37,99,235,0.4)]">
+                    <service.icon size={32} />
+                </div>
+
+                <h3 className="text-2xl font-black font-orbitron text-white mb-4 group-hover:text-blue-400 transition-colors tracking-tight">
+                    {service.title}
+                </h3>
+
+                <div className="flex items-center gap-3 mb-5">
+                    <div className="h-[2px] w-10 bg-gradient-to-r from-blue-500 to-transparent group-hover:w-16 transition-all duration-700"></div>
+                    <p className="text-cyan-400 font-bold text-[10px] uppercase tracking-[0.2em] drop-shadow-[0_0_5px_rgba(34,211,238,0.3)]">{service.desc}</p>
+                </div>
+
+                <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-200 transition-colors font-light">
+                    {service.longDesc}
+                </p>
+
+                {/* Subtle glass accent */}
+                <div className="mt-10 pt-6 border-t border-white/5 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0">
+                    <div className="flex flex-col">
+                        <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest leading-none mb-1">Service Level</span>
+                        <span className="text-[11px] font-black text-blue-400 uppercase tracking-widest font-orbitron">Professional</span>
+                    </div>
+                    <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white transition-all duration-500">
+                        <ArrowRight className="w-4 h-4" />
+                    </div>
+                </div>
+            </div>
+        </motion.div>
+    );
+}
+
+import { useMotionTemplate } from "framer-motion";
 
 // Reusable Icon Component (since Cog isn't imported from Lucide in some envs)
 const Cog = ({ size, className }: { size?: number, className?: string }) => (
@@ -129,17 +244,33 @@ export default function ServicesPage() {
     return (
         <div className="bg-black min-h-screen">
             {/* Hero Section */}
-            <section className="relative py-32 overflow-hidden flex items-center justify-center min-h-[60vh]">
+            <section className="relative py-44 overflow-hidden flex items-center justify-center min-h-[75vh]">
                 <div className="absolute inset-0 z-0">
-                    <img
-                        src="https://images.unsplash.com/photo-1621359921485-2c8137cdc904?q=80&w=2000&auto=format&fit=crop"
-                        alt="Services Hero"
-                        className="w-full h-full object-cover opacity-40"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
+                    <motion.div
+                        animate={{
+                            scale: [1, 1.05, 1],
+                            opacity: [0.6, 0.7, 0.6]
+                        }}
+                        transition={{
+                            duration: 12,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                        className="w-full h-full"
+                    >
+                        <img
+                            src="/images/services_hero.png"
+                            alt="Professional Detailing Studio"
+                            className="w-full h-full object-cover"
+                        />
+                    </motion.div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-black via-black/40 to-black"></div>
                 </div>
 
-                <div className="container mx-auto px-4 relative z-10 text-center">
+                {/* Cyber Grid Overlay */}
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(0,100,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,100,255,0.05)_1px,transparent_1px)] bg-[size:100px_100px] opacity-20 pointer-events-none z-10"></div>
+
+                <div className="container mx-auto px-4 relative z-20 text-center">
                     <ScrollReveal>
                         <span className="inline-block px-4 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">Expert Auto Care</span>
                         <h1 className="text-5xl md:text-7xl font-black font-orbitron text-white mb-6 leading-tight">
@@ -206,35 +337,45 @@ export default function ServicesPage() {
 
             {/* What We Do - Service Grid */}
             <section className="py-24 bg-neutral-900/10 relative overflow-hidden">
+                {/* Master Scanner Effect */}
+                <motion.div
+                    animate={{
+                        left: ["-10%", "110%"],
+                        opacity: [0, 1, 0]
+                    }}
+                    transition={{
+                        duration: 10,
+                        repeat: Infinity,
+                        ease: "linear",
+                        times: [0, 0.5, 1]
+                    }}
+                    className="absolute top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-blue-500/50 to-transparent z-40 hidden lg:block"
+                />
+
+                {/* Ambient Holographic Hub */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-blue-600/5 rounded-full blur-[150px] opacity-40 pointer-events-none animate-pulse"></div>
+
                 {/* Background Text Accent */}
-                <div className="absolute top-0 left-0 text-[15rem] font-black text-white/[0.02] font-orbitron -translate-x-1/4 -translate-y-1/4 pointer-events-none uppercase">Works</div>
+                <div className="absolute top-0 left-0 text-[18rem] font-black text-white/[0.01] font-orbitron -translate-x-1/4 -translate-y-1/4 pointer-events-none uppercase tracking-tighter">UDI'S</div>
+                <div className="absolute bottom-0 right-0 text-[18rem] font-black text-blue-500/[0.01] font-orbitron translate-x-1/4 translate-y-1/4 pointer-events-none uppercase tracking-tighter">PRECISION</div>
 
                 <div className="container mx-auto px-4 relative z-10">
                     <ScrollReveal>
-                        <div className="text-center mb-20">
-                            <h2 className="text-4xl md:text-6xl font-black font-orbitron text-white mb-6 uppercase">
-                                What We <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400">Do</span>
+                        <div className="text-center mb-24 max-w-4xl mx-auto px-4">
+                            <span className="text-blue-400 font-mono text-[10px] tracking-[0.5em] uppercase mb-4 block">System.Execute(Detailing_Grid)</span>
+                            <h2 className="text-5xl md:text-8xl font-black font-orbitron text-white mb-8 tracking-tighter uppercase">
+                                What We <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400 underline decoration-blue-500/20 underline-offset-8">Do</span>
                             </h2>
-                            <p className="text-gray-400 max-w-3xl mx-auto text-lg">
-                                Services to delivering premium quality and customer satisfaction. Our services are designed to provide exceptional results while ensuring every customer’s needs and expectations are met with care and professionalism.
+                            <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed">
+                                Our services are designed to provide <span className="text-white font-medium">exceptional results</span> while ensuring every customer’s needs and expectations are met with care and professionalism. From restoration to protection, we deliver premium quality.
                             </p>
                         </div>
                     </ScrollReveal>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
                         {services.map((service, idx) => (
                             <ScrollReveal key={idx} delay={idx * 0.05}>
-                                <div className="group relative bg-white/5 border border-white/5 p-8 rounded-[2rem] hover:bg-neutral-900/80 hover:border-blue-500/40 transition-all duration-500 h-full backdrop-blur-sm">
-                                    <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600/20 to-cyan-400/10 flex items-center justify-center text-blue-400 mb-8 group-hover:scale-110 transition-transform shadow-inner group-hover:from-blue-600 group-hover:to-cyan-400 group-hover:text-white duration-500">
-                                        <service.icon size={28} />
-                                    </div>
-                                    <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors">{service.title}</h3>
-                                    <p className="text-blue-200/60 font-medium text-sm mb-4">{service.desc}</p>
-                                    <p className="text-gray-500 text-sm leading-relaxed group-hover:text-gray-400 transition-colors">
-                                        {service.longDesc}
-                                    </p>
-                                </div>
+                                <SpotlightCard index={idx} service={service} />
                             </ScrollReveal>
                         ))}
                     </div>
@@ -261,8 +402,8 @@ export default function ServicesPage() {
                             <ScrollReveal key={idx} delay={idx * 0.1}>
                                 <div
                                     className={`rounded-2xl border transition-all duration-300 overflow-hidden ${openFaq === idx
-                                            ? "bg-blue-500/5 border-blue-500/40"
-                                            : "bg-white/5 border-white/5 hover:border-white/10"
+                                        ? "bg-blue-500/5 border-blue-500/40"
+                                        : "bg-white/5 border-white/5 hover:border-white/10"
                                         }`}
                                 >
                                     <button
