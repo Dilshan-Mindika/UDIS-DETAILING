@@ -25,9 +25,9 @@ export function ServicesPreview() {
                         viewport={{ once: true }}
                         className="inline-block mb-4"
                     >
-                        <div className="px-4 py-1.5 rounded-full border border-custom-gold/30 bg-custom-gold/5 backdrop-blur-md flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-custom-gold animate-pulse"></span>
-                            <span className="text-custom-gold text-xs font-bold tracking-[0.3em] uppercase">System: Online</span>
+                        <div className="px-4 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 backdrop-blur-md flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                            <span className="text-blue-500 text-xs font-bold tracking-[0.3em] uppercase">System: Online</span>
                         </div>
                     </motion.div>
 
@@ -38,7 +38,7 @@ export function ServicesPreview() {
                         viewport={{ once: true }}
                         className="text-5xl md:text-7xl font-black font-orbitron text-white max-w-4xl mx-auto leading-tight mb-6"
                     >
-                        PRECISION <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-cyan-400 to-purple-500 animate-gradient-x">ENGINEERING</span>
+                        PRECISION <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400">ENGINEERING</span>
                     </motion.h3>
                     <p className="text-gray-400 max-w-xl mx-auto text-lg">
                         Advanced automotive care protocols for the modern machine.
@@ -63,11 +63,6 @@ export function ServicesPreview() {
                             <div className="absolute top-0 left-0 w-full h-[2px] bg-blue-500/50 shadow-[0_0_15px_rgba(59,130,246,0.8)] translate-y-[-100%] group-hover:translate-y-[500px] transition-transform duration-[2s] ease-in-out"></div>
                         </div>
 
-                        {/* Tech Specs Decoration */}
-                        <div className="absolute top-6 right-6 flex flex-col items-end gap-1 opacity-50 group-hover:opacity-100 transition-opacity">
-                            <div className="h-1 w-12 bg-blue-500"></div>
-                            <div className="text-[10px] font-mono text-blue-400">EXT-01 // ACTIVE</div>
-                        </div>
 
                         <div className="absolute bottom-0 left-0 p-8 w-full">
                             <div className="w-14 h-14 rounded-2xl bg-blue-600/20 backdrop-blur-xl border border-blue-500/30 flex items-center justify-center mb-6 text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-[0_0_20px_rgba(37,99,235,0.2)]">
@@ -96,11 +91,6 @@ export function ServicesPreview() {
                             <div className="absolute top-0 left-0 w-full h-[2px] bg-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.8)] translate-y-[-100%] group-hover:translate-y-[500px] transition-transform duration-[2s] ease-in-out delay-100"></div>
                         </div>
 
-                        {/* Tech Specs Decoration */}
-                        <div className="absolute top-6 right-6 flex flex-col items-end gap-1 opacity-50 group-hover:opacity-100 transition-opacity">
-                            <div className="h-1 w-12 bg-purple-500"></div>
-                            <div className="text-[10px] font-mono text-purple-400">INT-02 // STERILE</div>
-                        </div>
 
                         <div className="absolute bottom-0 left-0 p-8 w-full">
                             <div className="w-14 h-14 rounded-2xl bg-purple-600/20 backdrop-blur-xl border border-purple-500/30 flex items-center justify-center mb-6 text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 shadow-[0_0_20px_rgba(147,51,234,0.2)]">

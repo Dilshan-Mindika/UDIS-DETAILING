@@ -22,7 +22,7 @@ export function AboutSection() {
                             transition={{ duration: 0.8 }}
                             viewport={{ once: true }}
                         >
-                            <h2 className="text-sm font-bold text-custom-gold tracking-[0.2em] uppercase mb-4">
+                            <h2 className="text-sm font-bold text-blue-500 tracking-[0.2em] uppercase mb-4">
                                 Our Philosophy
                             </h2>
                             <h3 className="text-4xl md:text-5xl font-black font-orbitron text-white leading-tight mb-6">
@@ -61,7 +61,7 @@ export function AboutSection() {
                                 transition={{ duration: 0.6, delay: 0.4 }}
                                 viewport={{ once: true }}
                             >
-                                <div className="p-3 rounded-lg bg-green-500/10 text-green-400 h-fit">
+                                <div className="p-3 rounded-lg bg-cyan-500/10 text-cyan-400 h-fit">
                                     <Leaf size={24} />
                                 </div>
                                 <div>
@@ -80,7 +80,7 @@ export function AboutSection() {
                             viewport={{ once: true }}
                         >
                             <Link href="/about">
-                                <Button className="rounded-full h-12 px-8 bg-white text-black hover:bg-custom-gold font-bold tracking-wide group">
+                                <Button className="rounded-full h-12 px-8 bg-white text-black hover:bg-blue-500 hover:text-white font-bold tracking-wide group transition-all duration-300">
                                     LEARN MORE
                                     <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
                                 </Button>
@@ -109,8 +109,8 @@ export function AboutSection() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
 
                         {/* Floating Badge */}
-                        <div className="absolute bottom-8 left-8 bg-black/80 backdrop-blur-xl border border-white/10 p-4 rounded-xl flex items-center gap-4">
-                            <div className="text-3xl font-bold text-custom-gold">100%</div>
+                        <div className="absolute bottom-8 left-8 bg-black/80 backdrop-blur-xl border border-blue-500/30 p-4 rounded-xl flex items-center gap-4 shadow-[0_0_30px_rgba(59,130,246,0.2)]">
+                            <div className="text-3xl font-bold text-cyan-400">100%</div>
                             <div className="text-xs text-gray-300 uppercase tracking-wider leading-tight">
                                 Satisfaction<br />Guarantee
                             </div>

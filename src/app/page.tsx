@@ -3,6 +3,7 @@ import { Stats } from "@/components/sections/Stats";
 import { BrandCarousel } from "@/components/sections/BrandCarousel";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { ServicesPreview } from "@/components/sections/ServicesPreview";
+import { BusinessValues } from "@/components/sections/BusinessValues";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <BrandCarousel />
       <AboutSection />
       <ServicesPreview />
+      <BusinessValues />
 
       {/* Testimonials Placeholder */}
       <section className="py-24 bg-custom-gray/20">
