@@ -9,7 +9,7 @@ export const packagesData = [
         tag: "ESSENTIAL",
         accent: "blue",
         icon: Zap,
-        heroImage: "https://images.unsplash.com/photo-1620706122118-206fc3c15562?q=80&w=2000&auto=format&fit=crop",
+        heroImage: "https://images.unsplash.com/photo-1552933529-e359b24772bf?q=80&w=2000&auto=format&fit=crop",
         features: [
             "Hand wash & dry",
             "Clean wheels & tires + Tire shine",
@@ -37,7 +37,7 @@ export const packagesData = [
         tag: "POPULAR",
         accent: "cyan",
         icon: Award,
-        heroImage: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?q=80&w=2000&auto=format&fit=crop",
+        heroImage: "https://images.unsplash.com/photo-1494905998402-395d579af36f?q=80&w=2000&auto=format&fit=crop",
         features: [
             "Clay Bar Treatment (Paint Decontamination)",
             "Shampoo Carpets And Mats",
@@ -65,7 +65,7 @@ export const packagesData = [
         tag: "ELITE",
         accent: "blue",
         icon: Star,
-        heroImage: "https://images.unsplash.com/photo-1618346136472-090de27fe30b?q=80&w=2000&auto=format&fit=crop",
+        heroImage: "https://images.unsplash.com/photo-1620706122118-206fc3c15562?q=80&w=2000&auto=format&fit=crop",
         features: [
             "Machine polish to reduce swirls/scratches",
             "2-3 months ceramic sealant",

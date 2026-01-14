@@ -59,21 +59,24 @@ const addOnCategories = [
 const workflowSteps = [
     {
         id: "01",
-        title: "Choose Your Package",
-        desc: "Select the package that best suits your needs and enjoy tailored services.",
-        icon: Package
+        title: "Tier Selection",
+        desc: "Analyze and select the elite detailing protocol that matches your vehicle's current condition and your restoration goals.",
+        icon: Package,
+        tag: "PROTOCOL_SYNC"
     },
     {
         id: "02",
-        title: "Schedule Appointment",
-        desc: "Book an appointment at your convenience and let us assist you.",
-        icon: Clock
+        title: "Secure Scheduling",
+        desc: "Coordinate with our automated booking matrix to reserve a high-precision slot that fits your operational timeline.",
+        icon: Clock,
+        tag: "TIME_LOCK_ACTIVE"
     },
     {
         id: "03",
-        title: "Expert Perfection",
-        desc: "Experience top-tier detailing with unmatched quality and care.",
-        icon: Sparkles
+        title: "Mission Execution",
+        desc: "Our master technicians initiate the transformation, utilizing scientific decontamination and artistic precision for absolute perfection.",
+        icon: Sparkles,
+        tag: "DEPLOYMENT_READY"
     }
 ];
 
@@ -105,8 +108,8 @@ function PackageCard({ pkg, index }: { pkg: any; index: number }) {
                 onMouseLeave={handleMouseLeave}
                 style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
                 className={`group relative p-8 md:p-10 rounded-[3.5rem] border transition-all duration-700 h-full flex flex-col perspective-1000 ${pkg.recommended
-                        ? "bg-neutral-900/70 border-blue-500/40 backdrop-blur-[40px] shadow-[0_0_60px_rgba(59,130,246,0.15)] scale-105 z-20 lg:-translate-y-6"
-                        : "bg-black/60 border-white/5 backdrop-blur-2xl hover:border-blue-500/30"
+                    ? "bg-neutral-900/70 border-blue-500/40 backdrop-blur-[40px] shadow-[0_0_60px_rgba(59,130,246,0.15)] scale-105 z-20 lg:-translate-y-6"
+                    : "bg-black/60 border-white/5 backdrop-blur-2xl hover:border-blue-500/30"
                     }`}
             >
                 {/* Ambient Glow */}
@@ -162,8 +165,8 @@ function PackageCard({ pkg, index }: { pkg: any; index: number }) {
                         <Link
                             href={`/packages/${pkg.slug}`}
                             className={`w-full py-6 rounded-2xl font-black font-orbitron uppercase tracking-[0.2em] text-center transition-all flex items-center justify-center gap-4 group/btn overflow-hidden relative ${pkg.recommended
-                                    ? "bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-[length:200%_auto] hover:bg-right text-white shadow-[0_10px_40px_rgba(37,99,235,0.4)]"
-                                    : "bg-white/5 text-white border border-white/10 hover:bg-white/10 hover:border-blue-500/30"
+                                ? "bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-[length:200%_auto] hover:bg-right text-white shadow-[0_10px_40px_rgba(37,99,235,0.4)]"
+                                : "bg-white/5 text-white border border-white/10 hover:bg-white/10 hover:border-blue-500/30"
                                 }`}
                         >
                             <span className="relative z-10 flex items-center gap-3">
@@ -250,7 +253,7 @@ export default function PackagesPage() {
             <section className="relative pt-40 pb-32 overflow-hidden">
                 <div className="absolute inset-0 z-0 scale-110">
                     <img
-                        src="https://images.unsplash.com/photo-1618346136472-090de27fe30b?q=80&w=2000&auto=format&fit=crop"
+                        src="https://images.unsplash.com/photo-1620706122118-206fc3c15562?q=80&w=2000&auto=format&fit=crop"
                         alt="High-End Detailing Studio"
                         className="w-full h-full object-cover opacity-40 grayscale-[0.2] contrast-[1.1]"
                     />
@@ -396,8 +399,11 @@ export default function PackagesPage() {
                                         <step.icon size={52} className="relative z-10 group-hover:scale-110 transition-transform duration-700" />
                                     </div>
                                     <div className="space-y-5">
-                                        <h4 className="text-3xl font-black font-orbitron text-white uppercase tracking-wider group-hover:text-cyan-400 transition-colors">{step.title}</h4>
-                                        <p className="text-gray-400 text-lg font-light leading-relaxed max-w-xs mx-auto opacity-80 group-hover:opacity-100 transition-opacity">{step.desc}</p>
+                                        <div className="flex flex-col items-center gap-2">
+                                            <span className="text-[10px] font-mono text-cyan-500/60 uppercase tracking-[0.3em] font-bold">Status: {(step as any).tag}</span>
+                                            <h4 className="text-3xl font-black font-orbitron text-white uppercase tracking-wider group-hover:text-cyan-400 transition-colors">{step.title}</h4>
+                                        </div>
+                                        <p className="text-gray-400 text-lg font-light leading-relaxed max-w-xs mx-auto opacity-80 group-hover:opacity-100 transition-opacity px-4">{step.desc}</p>
                                     </div>
                                 </div>
                             </ScrollReveal>
@@ -440,7 +446,7 @@ export default function PackagesPage() {
             <section className="py-40 relative overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://images.unsplash.com/photo-1603386329225-83fec67645f7?q=80&w=2000&auto=format&fit=crop"
+                        src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2000&auto=format&fit=crop"
                         alt="CTA Background"
                         className="w-full h-full object-cover opacity-30 contrast-[1.1] brightness-75 grayscale-[0.3]"
                     />
