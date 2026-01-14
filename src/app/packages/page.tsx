@@ -14,55 +14,7 @@ import {
 import Link from "next/link";
 import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
 import { useRef } from "react";
-
-const mainPackages = [
-    {
-        name: "Basic Package",
-        price: "150",
-        description: "Essential maintenance for a clean and fresh vehicle look.",
-        features: [
-            "Hand wash & dry",
-            "Clean wheels & tires + Tire shine",
-            "Vacuum seats, mats, and carpets",
-            "Wipe down dash, doors, and console",
-            "Clean interior & exterior windows",
-            "Light spray wax finish"
-        ],
-        recommended: false,
-        tag: "ESSENTIAL",
-        accent: "blue"
-    },
-    {
-        name: "Standard Package",
-        price: "300",
-        description: "Deep decontamination and interior restoration for daily drivers.",
-        features: [
-            "Clay Bar Treatment (Paint Decontamination)",
-            "Shampoo Carpets And Mats",
-            "Clean & Condition Seats (Leather Or Fabric)",
-            "Clean Vents, Cup Holders & Trim",
-            "Gloss Sealant For Enhanced Shine"
-        ],
-        recommended: true,
-        tag: "POPULAR",
-        accent: "cyan"
-    },
-    {
-        name: "Premium Package",
-        price: "400",
-        description: "The ultimate rejuvenation with machine polishing and long-term protection.",
-        features: [
-            "Machine polish to reduce swirls/scratches",
-            "2-3 months ceramic sealant",
-            "Steam clean interior surface",
-            "Stain and odor treatment",
-            "Trim & plastic restoration"
-        ],
-        recommended: false,
-        tag: "ELITE",
-        accent: "blue"
-    }
-];
+import { packagesData } from "@/lib/packageData";
 
 const addOnCategories = [
     {
@@ -164,7 +116,7 @@ function PackageCard({ pkg, index }: { pkg: any; index: number }) {
                 <motion.div className="absolute top-10 left-10 w-10 h-10 border-t-2 border-l-2 border-white/10 group-hover:border-blue-500/50 transition-colors pointer-events-none" />
                 <motion.div className="absolute bottom-10 right-10 w-10 h-10 border-b-2 border-r-2 border-white/10 group-hover:border-blue-500/50 transition-colors pointer-events-none" />
 
-                <div style={{ transform: "translateZ(50px)" }} className="relative z-10">
+                <div style={{ transform: "translateZ(50px)" }} className="relative z-10 flex flex-col h-full">
                     <div className="flex justify-between items-start mb-10">
                         <div className="space-y-1.5">
                             <div className="flex items-center gap-2">
@@ -190,7 +142,7 @@ function PackageCard({ pkg, index }: { pkg: any; index: number }) {
                     <div className="h-px w-full bg-gradient-to-r from-white/10 to-transparent mb-10" />
 
                     <ul className="space-y-5 mb-12 flex-1">
-                        {pkg.features.map((feature, fIdx) => (
+                        {pkg.features.slice(0, 5).map((feature: string, fIdx: number) => (
                             <li key={fIdx} className="flex items-center gap-4 group/item">
                                 <div className={`w-6 h-6 rounded-lg ${pkg.recommended ? 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30' : 'bg-blue-500/10 text-blue-400 border-blue-500/20'} flex items-center justify-center border transition-all duration-500 group-hover/item:scale-110 group-hover/item:bg-blue-500 group-hover/item:text-white`}>
                                     <CheckCircle2 size={14} />
@@ -198,30 +150,28 @@ function PackageCard({ pkg, index }: { pkg: any; index: number }) {
                                 <span className="text-gray-300 text-[15px] font-medium group-hover/item:text-white transition-colors tracking-wide">{feature}</span>
                             </li>
                         ))}
+                        {pkg.features.length > 5 && (
+                            <li className="text-blue-400/60 text-xs font-mono uppercase tracking-widest pl-10">
+                                + {pkg.features.length - 5} More Elite Services
+                            </li>
+                        )}
                     </ul>
 
                     <div className="relative pt-4">
                         <div className={`absolute -inset-1 ${pkg.recommended ? 'bg-cyan-500/20 blur-lg' : 'bg-blue-500/10 blur-md'} opacity-0 group-hover:opacity-100 transition-opacity`} />
                         <Link
-                            href="/appointment"
+                            href={`/packages/${pkg.slug}`}
                             className={`w-full py-6 rounded-2xl font-black font-orbitron uppercase tracking-[0.2em] text-center transition-all flex items-center justify-center gap-4 group/btn overflow-hidden relative ${pkg.recommended
                                     ? "bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-[length:200%_auto] hover:bg-right text-white shadow-[0_10px_40px_rgba(37,99,235,0.4)]"
                                     : "bg-white/5 text-white border border-white/10 hover:bg-white/10 hover:border-blue-500/30"
                                 }`}
                         >
                             <span className="relative z-10 flex items-center gap-3">
-                                Mark Your Day
+                                Explore Details
                                 <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform duration-500" />
                             </span>
                         </Link>
                     </div>
-                </div>
-
-                {/* Sub-surface HUD Data */}
-                <div className="absolute top-1/2 left-4 -translate-y-1/2 flex flex-col gap-1 opacity-0 group-hover:opacity-20 transition-opacity duration-1000 pointer-events-none">
-                    {[1, 2, 3, 4, 5].map(i => (
-                        <div key={i} className="h-[1px] w-4 bg-blue-500" />
-                    ))}
                 </div>
             </motion.div>
         </ScrollReveal>
@@ -300,14 +250,14 @@ export default function PackagesPage() {
             <section className="relative pt-40 pb-32 overflow-hidden">
                 <div className="absolute inset-0 z-0 scale-110">
                     <img
-                        src="https://images.unsplash.com/photo-1620706122118-206fc3c15562?q=80&w=2000&auto=format&fit=crop"
-                        alt="Cleaning Gear"
-                        className="w-full h-full object-cover opacity-30 grayscale-[0.5] contrast-[1.2]"
+                        src="https://images.unsplash.com/photo-1618346136472-090de27fe30b?q=80&w=2000&auto=format&fit=crop"
+                        alt="High-End Detailing Studio"
+                        className="w-full h-full object-cover opacity-40 grayscale-[0.2] contrast-[1.1]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
                     {/* Atmospheric Glows */}
-                    <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[150px] animate-pulse"></div>
-                    <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[150px] animate-pulse" style={{ animationDelay: '2s' }}></div>
+                    <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[180px] animate-pulse"></div>
+                    <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[180px] animate-pulse" style={{ animationDelay: '2s' }}></div>
                 </div>
 
                 {/* Vertical Scanner Pulse */}
@@ -331,23 +281,23 @@ export default function PackagesPage() {
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                                 </span>
-                                <span className="text-xs font-mono text-blue-400 tracking-[0.5em] uppercase font-black">SYTEM.PRICING_ESTABLISHED</span>
+                                <span className="text-xs font-mono text-blue-400 tracking-[0.5em] uppercase font-black">SYTEM.PRICING_MATRIX</span>
                                 <div className="h-4 w-[1px] bg-white/10"></div>
-                                <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">v2.0.4</span>
+                                <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">UDI_v2.5</span>
                             </motion.div>
 
                             <h1 className="text-6xl md:text-9xl font-black font-orbitron text-white mb-8 uppercase tracking-tighter leading-[0.8] text-center">
-                                ELITE <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-500 animate-gradient-x">TIERS</span>
+                                ELITE <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-500 animate-gradient-x">PACKAGES</span>
                             </h1>
 
                             <p className="text-xl md:text-3xl text-gray-400 max-w-3xl mx-auto font-light leading-snug text-center">
-                                Performance Detailing <span className="text-white font-medium italic underline decoration-blue-500/50 underline-offset-8">Perfected</span>. Choose your level of absolute restoration.
+                                Precision Engineered Detailing <span className="text-white font-medium italic underline decoration-blue-500/50 underline-offset-8">Perfected</span>. Discover the science of restoration.
                             </p>
 
                             <div className="flex gap-4 mt-12">
-                                <div className="h-1 w-20 bg-blue-600 rounded-full"></div>
-                                <div className="h-1 w-8 bg-blue-600/30 rounded-full"></div>
-                                <div className="h-1 w-4 bg-blue-600/10 rounded-full"></div>
+                                <div className="h-1.5 w-24 bg-blue-600 rounded-full shadow-[0_0_15px_rgba(37,99,235,0.5)]"></div>
+                                <div className="h-1.5 w-12 bg-blue-600/30 rounded-full"></div>
+                                <div className="h-1.5 w-6 bg-blue-600/10 rounded-full"></div>
                             </div>
                         </div>
                     </ScrollReveal>
@@ -360,7 +310,7 @@ export default function PackagesPage() {
 
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 md:gap-14 relative z-10">
-                        {mainPackages.map((pkg, idx) => (
+                        {packagesData.map((pkg, idx) => (
                             <PackageCard key={idx} pkg={pkg} index={idx} />
                         ))}
                     </div>
