@@ -5,6 +5,8 @@ import { AboutSection } from "@/components/sections/AboutSection";
 import { ServicesPreview } from "@/components/sections/ServicesPreview";
 import { BusinessValues } from "@/components/sections/BusinessValues";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
+import { PricingSection } from "@/components/sections/PricingSection";
+
 
 
 export default function Home() {
@@ -17,6 +19,8 @@ export default function Home() {
       <ServicesPreview />
       <BusinessValues />
       <WhyChooseUs />
+      <PricingSection />
+
 
 
       {/* Testimonials Placeholder */}
