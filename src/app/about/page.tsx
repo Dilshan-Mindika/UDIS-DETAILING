@@ -285,29 +285,46 @@ export default function AboutPage() {
                     <img
                         src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=2000&auto=format&fit=crop"
                         alt="Premium Detailing Foam"
-                        className="w-full h-full object-cover opacity-30"
+                        className="w-full h-full object-cover opacity-20"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-blue-900/20"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/90 to-blue-900/20"></div>
                 </div>
 
-                <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-10 z-0"></div>
+                {/* Ambient Hub Glow */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] opacity-50 pointer-events-none animate-pulse"></div>
 
                 <div className="container mx-auto px-4 relative z-10 text-center">
                     <ScrollReveal>
-                        <div className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-[3rem] p-12 md:p-16 backdrop-blur-md shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-                            <h2 className="text-4xl md:text-6xl font-black font-orbitron text-white mb-8">
+                        <div className="max-w-4xl mx-auto bg-neutral-900/60 border border-white/10 rounded-[4rem] p-12 md:p-20 backdrop-blur-[32px] shadow-2xl relative overflow-hidden group">
+                            {/* Technical HUD Brackets */}
+                            <div className="absolute top-10 left-10 w-12 h-12 border-t-2 border-l-2 border-white/10 group-hover:border-blue-500/40 transition-colors duration-700 pointer-events-none"></div>
+                            <div className="absolute bottom-10 right-10 w-12 h-12 border-b-2 border-r-2 border-white/10 group-hover:border-blue-500/40 transition-colors duration-700 pointer-events-none"></div>
+
+                            {/* Technical Tag */}
+                            <div className="flex justify-center mb-8">
+                                <div className="flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-4 py-1.5 rounded-full">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
+                                    <span className="text-[10px] font-mono text-blue-400 tracking-[0.3em] uppercase">Status: Limited Offer Active</span>
+                                </div>
+                            </div>
+
+                            <h2 className="text-5xl md:text-7xl font-black font-orbitron text-white mb-8 tracking-tighter uppercase leading-none">
                                 GRAB YOUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400">DISCOUNT</span>
                             </h2>
-                            <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
-                                Take advantage of our limited-time offer and save on premium car detailing services. Experience expert care and bring out the best in your vehicle – all at a great price.
+                            <p className="text-xl md:text-2xl text-gray-400 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+                                Take advantage of our limited-time offer and save on <span className="text-white font-medium italic">premium car detailing services</span>. Experience expert care and bring out the best in your vehicle.
                             </p>
-                            <Link
-                                href="/booking"
-                                className="inline-flex items-center gap-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold py-5 px-12 rounded-full hover:shadow-[0_0_40px_rgba(37,99,235,0.6)] transition-all transform hover:scale-105 hover:-translate-y-1 text-lg group"
-                            >
-                                Book Your Appointment Today
-                                <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-                            </Link>
+
+                            <div className="relative inline-block">
+                                <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-700"></div>
+                                <Link
+                                    href="/booking"
+                                    className="relative flex items-center gap-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold py-6 px-16 rounded-full hover:shadow-[0_0_50px_rgba(37,99,235,0.6)] transition-all transform hover:scale-105 hover:-translate-y-1 text-xl uppercase tracking-widest font-orbitron"
+                                >
+                                    Book Your Appointment Today
+                                    <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-500" />
+                                </Link>
+                            </div>
                         </div>
                     </ScrollReveal>
                 </div>

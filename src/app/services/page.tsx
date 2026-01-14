@@ -7,7 +7,10 @@ import {
     Zap, Award, Users, Search,
     Hammer, Scissors, Info,
     Maximize, Wind, Trash2,
-    ShieldAlert, BadgeCheck, Leaf
+    ShieldAlert, BadgeCheck, Leaf,
+    ShieldPlus, Lightbulb, Settings,
+    PawPrint, AirVent, Paintbrush,
+    Disc, Layers, ShieldCheck
 } from "lucide-react";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
@@ -82,11 +85,6 @@ function SpotlightCard({ index, service }: { index: number, service: any }) {
             <div className="absolute top-6 left-6 w-8 h-8 border-t border-l border-white/10 group-hover:border-blue-500/50 transition-colors duration-500 pointer-events-none"></div>
             <div className="absolute bottom-6 right-6 w-8 h-8 border-b border-r border-white/10 group-hover:border-blue-500/50 transition-colors duration-500 pointer-events-none"></div>
 
-            {/* Technical ID Tag */}
-            <div className="absolute top-8 left-16 flex items-center gap-2 opacity-20 group-hover:opacity-60 transition-opacity">
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
-                <span className="text-[10px] font-mono text-white tracking-tighter uppercase whitespace-nowrap">UDI-SYS-{(index + 1).toString().padStart(3, '0')}</span>
-            </div>
 
             {/* Stylized background number */}
             <div className="absolute top-4 right-8 text-8xl font-black text-white/[0.03] font-orbitron select-none pointer-events-none group-hover:text-blue-500/10 transition-all duration-700 group-hover:scale-110">
@@ -129,22 +127,6 @@ function SpotlightCard({ index, service }: { index: number, service: any }) {
 import { useMotionTemplate } from "framer-motion";
 
 // Reusable Icon Component (since Cog isn't imported from Lucide in some envs)
-const Cog = ({ size, className }: { size?: number, className?: string }) => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width={size || 24}
-        height={size || 24}
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className={className}
-    >
-        <path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z" /><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
-    </svg>
-);
 
 const services = [
     {
@@ -168,19 +150,19 @@ const services = [
     {
         title: "Ceramic Coating",
         desc: "Long-lasting protection. Brilliant shine.",
-        icon: Shield,
+        icon: ShieldPlus,
         longDesc: "The ultimate shield. Our ceramic coatings bond to your paint at a molecular level, providing years of extreme hydrophobicity and chemical resistance."
     },
     {
         title: "Headlight Restoration",
         desc: "Clear headlights. Safer drives road.",
-        icon: Search,
+        icon: Lightbulb,
         longDesc: "Foggy, yellowed headlights are a safety hazard and an eyesore. We restore them to factory clarity and seal them with UV protection."
     },
     {
         title: "Engine Bay Cleaning",
         desc: "Clean engine bay. Peak performance.",
-        icon: Cog,
+        icon: Settings,
         longDesc: "A clean engine runs cooler and allows for easier maintenance discovery. We safely degrease and dress all bay components."
     },
     {
@@ -192,37 +174,37 @@ const services = [
     {
         title: "Pet Hair Removal",
         desc: "No fluff. Just fresh.",
-        icon: Scissors,
+        icon: PawPrint,
         longDesc: "Tough pet hair requires specialized tools and patience. We remove every strand to restore your interior to its original state."
     },
     {
         title: "Odour Removal",
         desc: "Remove smells. Refresh the cabin.",
-        icon: Wind,
+        icon: AirVent,
         longDesc: "Don't just mask smells; eliminate them. Our specialized treatments neutralize bacteria and organic compounds at the source."
     },
     {
         title: "Scratch Removing & Touch-Up",
         desc: "Hide damage. Keep shine.",
-        icon: ShieldAlert,
+        icon: Paintbrush,
         longDesc: "Localized paint repair and precision touch-ups to prevent rust and mask deeper scratches that cannot be polished out."
     },
     {
         title: "Wheel Face Ceramic Coating",
         desc: "Coat rims. Stay clean.",
-        icon: BadgeCheck,
+        icon: Disc,
         longDesc: "Make your wheels easier to clean. Our specialized wheel coating resists brake dust and high temperatures, keeping rims looking new."
     },
     {
         title: "Vinyl Wrapping",
         desc: "Stand out. Stay protected.",
-        icon: Maximize,
+        icon: Layers,
         longDesc: "Change your vehicle's look or add accents with premium vinyl. Provides a fresh aesthetic while protecting the paint underneath."
     },
     {
         title: "PPF (Paint Protective Film Installation)",
         desc: "Invisible armor. Lasting protection.",
-        icon: Shield,
+        icon: ShieldCheck,
         longDesc: "The gold standard in protection. A thick, self-healing urethane film that protects against rock chips, road debris, and heavy scratches."
     }
 ];
@@ -284,32 +266,44 @@ export default function ServicesPage() {
             </section>
 
             {/* Passionate Experts Section */}
-            <section className="py-24 relative">
-                <div className="container mx-auto px-4">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
-                        <ScrollReveal>
-                            <div className="space-y-8">
-                                <h2 className="text-4xl md:text-5xl font-black font-orbitron text-white">
-                                    Passionate Experts in <span className="text-blue-500">Auto Care</span>
-                                </h2>
-                                <p className="text-gray-400 text-lg leading-relaxed">
-                                    We use industry-leading, eco-friendly products for the best results & ensure every detail is perfected. Our approach combines technical mastery with a genuine love for automotive excellence.
-                                </p>
+            <section className="py-24 relative overflow-hidden">
+                {/* Background Tech Elements */}
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyan-600/5 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-4">
+                <div className="container mx-auto px-4 relative z-10 text-center lg:text-left">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                        <ScrollReveal>
+                            <div className="space-y-10">
+                                <div className="space-y-4">
+                                    <div className="flex items-center gap-3 justify-center lg:justify-start">
+                                        <div className="h-[1px] w-12 bg-blue-500/50"></div>
+                                        <span className="text-blue-400 font-mono text-[10px] tracking-[0.5em] uppercase">SYS.IDENTITY(Expert_Division)</span>
+                                    </div>
+                                    <h2 className="text-5xl md:text-7xl font-black font-orbitron text-white tracking-tighter uppercase leading-none">
+                                        Passionate Experts in <br />
+                                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 bg-[length:200%_auto] animate-gradient">Auto Care</span>
+                                    </h2>
+                                    <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed max-w-xl mx-auto lg:mx-0">
+                                        We use industry-leading, <span className="text-white font-medium italic">eco-friendly products</span> for the best results & ensure every detail is perfected. Our approach combines technical mastery with a genuine love for automotive excellence.
+                                    </p>
+                                </div>
+
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                     {[
-                                        { title: "Top-Quality Products", desc: "Superior products for superior results.", icon: Award },
-                                        { title: "Expert Technicians", desc: "Skilled hands. Exceptional care.", icon: Users },
-                                        { title: "Skilled Professionals", desc: "Expertise that shows in every detail.", icon: Star },
-                                        { title: "Interior & Exterior", desc: "Long-lasting protection for all surfaces.", icon: Shield }
+                                        { title: "Top-Quality Products", desc: "Superior results through science.", icon: Award, tag: "VERIFIED" },
+                                        { title: "Expert Technicians", desc: "Skilled hands. Exceptional care.", icon: Users, tag: "MASTER" },
+                                        { title: "Skilled Professionals", desc: "Precision in every single detail.", icon: Star, tag: "ELITE" },
+                                        { title: "Interior & Exterior", desc: "Surface-specific protection.", icon: ShieldCheck, tag: "PRO" }
                                     ].map((item, idx) => (
-                                        <div key={idx} className="flex gap-4 group">
-                                            <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-all shadow-lg">
-                                                <item.icon size={24} />
+                                        <div key={idx} className="relative group p-6 bg-white/[0.03] border border-white/5 rounded-3xl hover:border-blue-500/30 transition-all duration-500 backdrop-blur-sm shadow-xl">
+                                            <div className="absolute top-4 right-4 text-[8px] font-mono text-blue-500/40 group-hover:text-blue-400 transition-colors uppercase tracking-[0.2em]">{item.tag}</div>
+                                            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-600/20 to-cyan-400/10 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-all duration-500 shadow-lg border border-white/5 mx-auto lg:mx-0">
+                                                <item.icon size={22} />
                                             </div>
                                             <div>
-                                                <h4 className="text-white font-bold mb-1">{item.title}</h4>
-                                                <p className="text-gray-500 text-sm">{item.desc}</p>
+                                                <h4 className="text-white font-black font-orbitron text-sm mb-2 tracking-wide uppercase group-hover:text-blue-400 transition-colors">{item.title}</h4>
+                                                <p className="text-gray-500 text-xs leading-relaxed group-hover:text-gray-400 transition-colors">{item.desc}</p>
                                             </div>
                                         </div>
                                     ))}
@@ -318,16 +312,47 @@ export default function ServicesPage() {
                         </ScrollReveal>
 
                         <ScrollReveal delay={0.2}>
-                            <div className="relative">
-                                <div className="absolute inset-0 bg-blue-600/10 rounded-3xl blur-2xl"></div>
-                                <img
-                                    src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=1000&auto=format&fit=crop"
-                                    alt="Detailing Expertise"
-                                    className="relative rounded-3xl border border-white/5 shadow-2xl h-[500px] object-cover w-full"
-                                />
-                                <div className="absolute -bottom-6 -right-6 bg-blue-600 p-8 rounded-3xl shadow-xl hidden md:block">
-                                    <span className="block text-4xl font-black text-white font-orbitron">100%</span>
-                                    <span className="text-blue-100 text-xs font-bold uppercase tracking-widest">Satisfaction Guarantee</span>
+                            <div className="relative group max-w-[600px] mx-auto lg:max-w-none">
+                                {/* Technical HUD Frame */}
+                                <div className="absolute -inset-4 border border-white/5 rounded-[2.5rem] pointer-events-none group-hover:border-blue-500/20 transition-all duration-700"></div>
+                                <div className="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-blue-500/30 rounded-tl-3xl pointer-events-none group-hover:scale-110 transition-transform"></div>
+                                <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-blue-500/30 rounded-br-3xl pointer-events-none group-hover:scale-110 transition-transform"></div>
+
+                                <div className="relative rounded-[2rem] overflow-hidden aspect-[4/5] lg:aspect-square group-hover:shadow-[0_0_50px_rgba(59,130,246,0.2)] transition-shadow">
+                                    <div className="absolute inset-0 bg-blue-600/10 mix-blend-overlay z-10"></div>
+                                    <motion.img
+                                        whileHover={{ scale: 1.05 }}
+                                        transition={{ duration: 0.8 }}
+                                        src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=1000&auto=format&fit=crop"
+                                        alt="Detailing Expertise"
+                                        className="w-full h-full object-cover filter brightness-75 contrast-125 transition-all"
+                                    />
+
+                                    {/* HUD Scanning Line */}
+                                    <motion.div
+                                        animate={{ top: ["-10%", "110%"] }}
+                                        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                                        className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-blue-400 to-transparent z-20 opacity-40 shadow-[0_0_15px_rgba(34,211,238,0.5)]"
+                                    />
+
+                                    {/* Data Readout Overlay */}
+                                    <div className="absolute bottom-8 left-8 z-30 space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">
+                                        <div className="flex items-center gap-2">
+                                            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                                            <span className="text-[10px] font-mono text-white/80 tracking-widest uppercase">Target: Perfection_Acquired</span>
+                                        </div>
+                                        <div className="text-[9px] font-mono text-blue-400/80 leading-tight">
+                                            PRECISION: 100%<br />
+                                            GLOSS_FACTOR: MAXIMAL<br />
+                                            BARRIER: ACTIVE
+                                        </div>
+                                    </div>
+
+                                    {/* Satisfaction Tag */}
+                                    <div className="absolute top-8 right-8 z-30 bg-blue-600/90 backdrop-blur-md p-6 rounded-2xl shadow-xl border border-white/10 opacity-0 group-hover:opacity-100 transition-all duration-700 scale-90 group-hover:scale-100">
+                                        <span className="block text-3xl font-black text-white font-orbitron leading-none mb-1">100%</span>
+                                        <span className="text-blue-100 text-[8px] font-bold uppercase tracking-[0.2em] whitespace-nowrap">SATISFACTION_LOCKED</span>
+                                    </div>
                                 </div>
                             </div>
                         </ScrollReveal>
@@ -442,28 +467,53 @@ export default function ServicesPage() {
                     <img
                         src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2000&auto=format&fit=crop"
                         alt="CTA Background"
-                        className="w-full h-full object-cover opacity-30"
+                        className="w-full h-full object-cover opacity-20"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-blue-900/20"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/90 to-blue-900/20"></div>
                 </div>
+
+                {/* Ambient Hub Glow */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-600/10 rounded-full blur-[120px] opacity-50 pointer-events-none animate-pulse"></div>
 
                 <div className="container mx-auto px-4 relative z-10 text-center">
                     <ScrollReveal>
-                        <div className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-[3rem] p-12 md:p-16 backdrop-blur-md shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-                            <span className="inline-block px-4 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-8">Exclusive Offer</span>
-                            <h2 className="text-4xl md:text-6xl font-black font-orbitron text-white mb-8 uppercase leading-tight">
-                                10% OFF - <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400">Book Your</span><br />Detailing Today
+                        <div className="max-w-4xl mx-auto bg-neutral-900/60 border border-white/10 rounded-[4rem] p-12 md:p-20 backdrop-blur-[32px] shadow-2xl relative overflow-hidden group">
+                            {/* Technical HUD Brackets */}
+                            <div className="absolute top-10 left-10 w-12 h-12 border-t-2 border-l-2 border-white/10 group-hover:border-blue-500/40 transition-colors duration-700 pointer-events-none"></div>
+                            <div className="absolute bottom-10 right-10 w-12 h-12 border-b-2 border-r-2 border-white/10 group-hover:border-blue-500/40 transition-colors duration-700 pointer-events-none"></div>
+
+                            {/* Prominent Technical Badge */}
+                            <div className="flex justify-center mb-8">
+                                <motion.div
+                                    animate={{
+                                        boxShadow: ["0 0 0px rgba(34,211,238,0)", "0 0 20px rgba(34,211,238,0.3)", "0 0 0px rgba(34,211,238,0)"]
+                                    }}
+                                    transition={{ duration: 2, repeat: Infinity }}
+                                    className="flex items-center gap-3 bg-cyan-500/10 border border-cyan-500/30 px-6 py-2 rounded-full"
+                                >
+                                    <span className="text-cyan-400 font-black text-sm tracking-[0.2em] font-orbitron">10% OFF</span>
+                                    <div className="w-1 h-4 bg-cyan-500/30"></div>
+                                    <span className="text-[10px] font-mono text-white/60 tracking-widest uppercase">Limited Time Offer</span>
+                                </motion.div>
+                            </div>
+
+                            <h2 className="text-5xl md:text-7xl font-black font-orbitron text-white mb-8 tracking-tighter uppercase leading-tight">
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400">Exclusive</span><br />Detailing Offer
                             </h2>
-                            <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
-                                Take advantage of our limited-time offer and save on premium car detailing services. Experience expert care and bring out the best in your vehicle – all at a great price.
+                            <p className="text-xl md:text-2xl text-gray-400 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+                                Take advantage of our limited-time offer and save on premium car detailing services. Experience <span className="text-white font-medium italic">expert care</span> and bring out the best in your vehicle – all at a great price.
                             </p>
-                            <Link
-                                href="/appointment"
-                                className="group inline-flex items-center gap-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold py-5 px-12 rounded-full hover:shadow-[0_0_40px_rgba(37,99,235,0.6)] transition-all transform hover:scale-105 hover:-translate-y-1 text-lg"
-                            >
-                                Book Now
-                                <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-                            </Link>
+
+                            <div className="relative inline-block">
+                                <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-700"></div>
+                                <Link
+                                    href="/appointment"
+                                    className="relative group inline-flex items-center gap-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold py-6 px-16 rounded-full hover:shadow-[0_0_50px_rgba(37,99,235,0.6)] transition-all transform hover:scale-105 hover:-translate-y-1 text-xl uppercase tracking-widest font-orbitron"
+                                >
+                                    Book Now
+                                    <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-500" />
+                                </Link>
+                            </div>
                         </div>
                     </ScrollReveal>
                 </div>
