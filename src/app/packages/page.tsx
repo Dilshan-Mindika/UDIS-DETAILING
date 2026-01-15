@@ -22,27 +22,27 @@ const addOnCategories = [
         title: "Maintenance & Care",
         tag: "MAINTENANCE_SYS",
         items: [
-            { name: "Engine Bay Cleaning", price: "20", icon: Settings },
+            { name: "Engine Bay Cleaning", price: "20", icon: Settings, slug: "engine-bay-detail" },
             { name: "Extra Dirty Vehicle Charge", price: "50", icon: Trash2 },
-            { name: "Odour Removal", price: "40", icon: AirVent },
-            { name: "Pet Hair Removal", price: "40", icon: PawPrint },
+            { name: "Odour Removal", price: "40", icon: AirVent, slug: "interior-rescue" },
+            { name: "Pet Hair Removal", price: "40", icon: PawPrint, slug: "interior-rescue" },
         ]
     },
     {
         title: "Advanced Protection",
         tag: "PROTECTION_SHIELD",
         items: [
-            { name: "Ceramic Coating", price: "900", icon: ShieldPlus },
-            { name: "Wheel Face Ceramic Coating(1Y)", price: "100", icon: Disc },
-            { name: "PPF (Paint Protection Film)", price: "200", icon: ShieldCheck },
-            { name: "Vinyl Wrapping", price: "200", icon: Layers }
+            { name: "Ceramic Coating", price: "900", icon: ShieldPlus, slug: "ceramic-coating" },
+            { name: "Wheel Face Ceramic Coating(1Y)", price: "100", icon: Disc, slug: "ceramic-coating" },
+            { name: "PPF (Paint Protection Film)", price: "200", icon: ShieldCheck, slug: "paint-protection-film" },
+            { name: "Vinyl Wrapping", price: "200", icon: Layers, slug: "vinyl-wrapping" }
         ]
     },
     {
         title: "Restoration & Repair",
         tag: "RESTORATION_TECH",
         items: [
-            { name: "Headlight Restoration", price: "100", icon: Lightbulb },
+            { name: "Headlight Restoration", price: "100", icon: Lightbulb, slug: "headlight-restoration" },
             { name: "PDR (Paintless Dent Removal)", price: "80", icon: Hammer },
             { name: "Scratch Removing & Touch-Up", price: "60", icon: Paintbrush }
         ]
@@ -108,11 +108,14 @@ function PackageCard({ pkg, index }: { pkg: any; index: number }) {
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-                className={`group relative p-8 md:p-10 rounded-[3.5rem] border transition-all duration-700 h-full flex flex-col perspective-1000 ${pkg.recommended
+                className={`group relative p-8 md:p-10 rounded-[3.5rem] border transition-all duration-700 h-full flex flex-col perspective-1000 cursor-pointer ${pkg.recommended
                     ? "bg-neutral-900/70 border-blue-500/40 backdrop-blur-[40px] shadow-[0_0_60px_rgba(59,130,246,0.15)] scale-105 z-20 lg:-translate-y-6"
                     : "bg-black/60 border-white/5 backdrop-blur-2xl hover:border-blue-500/30"
                     }`}
             >
+                {/* Full Card Link Overlay */}
+                <Link href={`/packages/${pkg.slug}`} className="absolute inset-0 z-30" aria-label={`View details for ${pkg.name}`} />
+
                 {/* Ambient Glow */}
                 <div className={`absolute -inset-4 bg-gradient-to-tr ${pkg.recommended ? 'from-blue-600/10 to-cyan-500/10' : 'from-blue-600/5 to-transparent'} rounded-[4rem] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
 
@@ -120,7 +123,7 @@ function PackageCard({ pkg, index }: { pkg: any; index: number }) {
                 <motion.div className="absolute top-10 left-10 w-10 h-10 border-t-2 border-l-2 border-white/10 group-hover:border-blue-500/50 transition-colors pointer-events-none" />
                 <motion.div className="absolute bottom-10 right-10 w-10 h-10 border-b-2 border-r-2 border-white/10 group-hover:border-blue-500/50 transition-colors pointer-events-none" />
 
-                <div style={{ transform: "translateZ(50px)" }} className="relative z-10 flex flex-col h-full">
+                <div style={{ transform: "translateZ(50px)" }} className="relative z-10 flex flex-col h-full pointer-events-none">
                     <div className="flex justify-between items-start mb-10">
                         <div className="space-y-1.5">
                             <div className="flex items-center gap-2">
@@ -163,8 +166,8 @@ function PackageCard({ pkg, index }: { pkg: any; index: number }) {
 
                     <div className="relative pt-4">
                         <div className={`absolute -inset-1 ${pkg.recommended ? 'bg-cyan-500/20 blur-lg' : 'bg-blue-500/10 blur-md'} opacity-0 group-hover:opacity-100 transition-opacity`} />
-                        <Link
-                            href={`/packages/${pkg.slug}`}
+                        {/* Converted to div for visual only, interaction handled by overlay Link */}
+                        <div
                             className={`w-full py-6 rounded-2xl font-black font-orbitron uppercase tracking-[0.2em] text-center transition-all flex items-center justify-center gap-4 group/btn overflow-hidden relative ${pkg.recommended
                                 ? "bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-[length:200%_auto] hover:bg-right text-white shadow-[0_10px_40px_rgba(37,99,235,0.4)]"
                                 : "bg-white/5 text-white border border-white/10 hover:bg-white/10 hover:border-blue-500/30"
@@ -174,7 +177,7 @@ function PackageCard({ pkg, index }: { pkg: any; index: number }) {
                                 Explore Details
                                 <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform duration-500" />
                             </span>
-                        </Link>
+                        </div>
                     </div>
                 </div>
             </motion.div>
@@ -192,11 +195,16 @@ function AddOnCard({ service }: { service: any }) {
         mouseY.set(clientY - top);
     }
 
+    // Determine Link Destination
+    const href = service.slug ? `/packages/${service.slug}` : "/appointment";
+
     return (
         <div
             onMouseMove={onMouseMove}
-            className="group relative p-6 bg-neutral-900/40 border border-white/5 rounded-3xl hover:border-blue-500/30 transition-all duration-500 overflow-hidden backdrop-blur-md h-full flex flex-col"
+            className="group relative p-6 bg-neutral-900/40 border border-white/5 rounded-3xl hover:border-blue-500/30 transition-all duration-500 overflow-hidden backdrop-blur-md h-full flex flex-col cursor-pointer"
         >
+            <Link href={href} className="absolute inset-0 z-30" aria-label={`View details for ${service.name}`} />
+
             <motion.div
                 className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 style={{
@@ -207,12 +215,12 @@ function AddOnCard({ service }: { service: any }) {
                 }}
             />
 
-            <div className="absolute top-4 right-6 flex items-center gap-2">
+            <div className="absolute top-4 right-6 flex items-center gap-2 pointer-events-none">
                 <span className="text-[8px] font-mono text-blue-500/40 opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">queue_ready</span>
                 <div className="w-1.5 h-1.5 rounded-full bg-blue-500/20 group-hover:bg-blue-500 transition-colors"></div>
             </div>
 
-            <div className="relative z-10 flex flex-col h-full">
+            <div className="relative z-10 flex flex-col h-full pointer-events-none">
                 <div className="w-12 h-12 rounded-2xl bg-blue-500/5 flex items-center justify-center text-blue-400 group-hover:text-blue-300 group-hover:scale-110 group-hover:bg-blue-500/10 transition-all duration-500 border border-white/5 mb-6 shadow-glow">
                     <service.icon size={24} />
                 </div>
@@ -230,12 +238,12 @@ function AddOnCard({ service }: { service: any }) {
                             <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest leading-none mb-1">Starting_At</span>
                             <span className="text-2xl font-black text-white font-orbitron whitespace-nowrap leading-none">AUD {service.price}</span>
                         </div>
-                        <Link
-                            href="/appointment"
-                            className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-white/40 hover:bg-blue-600 hover:text-white transition-all transform hover:rotate-45 shadow-lg shadow-black/40"
+                        {/* Converted to visual div */}
+                        <div
+                            className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-white/40 group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:rotate-45 shadow-lg shadow-black/40"
                         >
                             <ArrowRight size={18} />
-                        </Link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -266,7 +274,7 @@ export default function PackagesPage() {
 
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 md:gap-14 relative z-10">
-                        {packagesData.map((pkg, idx) => (
+                        {packagesData.filter((pkg: any) => pkg.isMainPackage).map((pkg, idx) => (
                             <PackageCard key={idx} pkg={pkg} index={idx} />
                         ))}
                     </div>

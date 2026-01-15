@@ -1,4 +1,4 @@
-import { NextResponse } from "next/navigation";
+import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { getAdminEmailTemplate, getCustomerEmailTemplate } from "@/lib/emailTemplates";
 

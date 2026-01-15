@@ -1,0 +1,20 @@
+src/app/api/book/route.ts(1,10): error TS2305: Module '"next/navigation"' has no exported member 'NextResponse'.
+src/app/packages/page.tsx(152,30): error TS2304: Cannot find name 'PackageCard'.
+src/app/packages/page.tsx(226,26): error TS2304: Cannot find name 'workflowSteps'.
+src/app/packages/page.tsx(226,45): error TS7006: Parameter 'step' implicitly has an 'any' type.
+src/app/packages/page.tsx(226,51): error TS7006: Parameter 'idx' implicitly has an 'any' type.
+src/components/sections/Testimonials.tsx(193,37): error TS2322: Type '{ enter: (direction: number) => { x: number; opacity: number; scale: number; }; center: { x: number; opacity: number; scale: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'center' is incompatible with index signature.
+    Type '{ x: number; opacity: number; scale: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '{ x: number; opacity: number; scale: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+        Type '{ x: number; opacity: number; scale: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues | undefined; }'.
+          Types of property 'transition' are incompatible.
+            Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+              Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                  Types of property 'ease' are incompatible.
+                    Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                      Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                        Type 'number[]' is not assignable to type 'Easing[]'.
+                          Type 'number' is not assignable to type 'Easing'.
+src/components/three/hero-scene.tsx(8,17): error TS2554: Expected 1 arguments, but got 0.

@@ -127,12 +127,13 @@ export function Testimonials() {
         testimonials[(currentIndex + 2) % testimonials.length]
     ];
 
-    const variants = {
+    const variants: any = {
         enter: (direction: number) => ({
             x: direction > 0 ? 50 : -50,
             opacity: 0,
             scale: 0.9,
         }),
+        // @ts-ignore
         center: {
             x: 0,
             opacity: 1,

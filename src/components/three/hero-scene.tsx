@@ -5,7 +5,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 
 function NanoField(props: any) {
-    const ref = useRef<any>();
+    const ref = useRef<any>(null);
 
     // Generate particles manually
     const [sphere] = useState(() => {
