@@ -8,20 +8,33 @@ export async function POST(req: Request) {
         const { name, email, phone, vehicleModel, preferredDate, preferredTime, notes, packageName } = data;
 
         // Configuration for Gmail Nodemailer
-        // IMPORTANT: User must set these in their .env file
+        // DEBUG: Check for missing credentials
+        if (!process.env.GMAIL_APP_PASSWORD) {
+            console.error("CRITICAL ERROR: GMAIL_APP_PASSWORD is not defined in environment variables.");
+            console.error("Please add GMAIL_APP_PASSWORD=your_app_password to your .env file.");
+            return NextResponse.json({ message: "Server Misconfiguration: Missing Email Credentials" }, { status: 500 });
+        }
+
         const transporter = nodemailer.createTransport({
             service: "gmail",
             auth: {
                 user: process.env.GMAIL_USER || "udimultipro@gmail.com",
-                pass: process.env.GMAIL_APP_PASSWORD, // Must be a Google App Password
+                pass: process.env.GMAIL_APP_PASSWORD,
             },
         });
 
-        // 1. Send Notification to Admin
+        // Admin Recipient List
+        const adminEmails = [
+            "udarajayasanka27@gmail.com",
+            "udimultipro@gmail.com",
+            "detailing@udismultipro.com"
+        ];
+
+        // 1. Send Notification to Admins
         const adminMailOptions = {
-            from: `"UDI'S RESERVATION" <${process.env.GMAIL_USER || "udimultipro@gmail.com"}>`,
-            to: "udimultipro@gmail.com",
-            subject: `🚨 NEW BOOKING: ${packageName} - ${name}`,
+            from: `"UDI'S RESERVATION SYSTEM" <${process.env.GMAIL_USER || "udimultipro@gmail.com"}>`,
+            to: adminEmails.join(", "), // Send to all admins
+            subject: `🚨 NEW BOOKING: ${packageName || "Custom"} - ${name}`,
             html: getAdminEmailTemplate(data),
         };
 
@@ -29,7 +42,7 @@ export async function POST(req: Request) {
         const customerMailOptions = {
             from: `"UDI'S MULTIPRO DETAILING" <${process.env.GMAIL_USER || "udimultipro@gmail.com"}>`,
             to: email,
-            subject: `Booking Confirmation: Your ${packageName} Journey Starts Soon`,
+            subject: `Booking Received: Your ${packageName || "Detailing"} Journey Starts Soon`,
             html: getCustomerEmailTemplate(data),
         };
 

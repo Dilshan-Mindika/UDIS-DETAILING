@@ -14,7 +14,6 @@ export default function ContactPage() {
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setLoading(true);
-        // Placeholder for API call
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData);
 
@@ -114,7 +113,7 @@ export default function ContactPage() {
                             </div>
                         </ScrollReveal>
 
-                        {/* Map Section */}
+                        {/* Map Section - Integrated & Actionable */}
                         <ScrollReveal delay={0.2}>
                             <a
                                 href="https://share.google/K8iPJuih9Ag441Zu2"
@@ -163,9 +162,7 @@ export default function ContactPage() {
                                             { name: "subject", label: "Subject", placeholder: "e.g. Ceramic Coating Quote" }
                                         ].map((field) => (
                                             <div key={field.name} className="space-y-2">
-                                                <label className="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">
-                                                    {field.label} <span className="text-red-500">*</span>
-                                                </label>
+                                                <label className="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">{field.label} <span className="text-red-500">*</span></label>
                                                 <input
                                                     name={field.name}
                                                     type={field.type || "text"}
@@ -177,9 +174,7 @@ export default function ContactPage() {
                                         ))}
 
                                         <div className="space-y-2">
-                                            <label className="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">
-                                                Message <span className="text-red-500">*</span>
-                                            </label>
+                                            <label className="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Message <span className="text-red-500">*</span></label>
                                             <textarea
                                                 name="message"
                                                 required

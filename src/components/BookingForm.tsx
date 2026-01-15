@@ -53,19 +53,25 @@ export default function BookingForm({ packageName }: { packageName: string }) {
                 <div className="w-20 h-20 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-8 border border-blue-500/30 shadow-[0_0_30px_rgba(59,130,246,0.3)]">
                     <CheckCircle2 size={40} className="text-blue-400" />
                 </div>
-                <h3 className="text-3xl font-black font-orbitron text-white uppercase tracking-tighter">Transmission Received</h3>
+                <h3 className="text-3xl font-black font-orbitron text-white uppercase tracking-tighter">Request Sent</h3>
                 <p className="text-gray-400 max-w-xs mx-auto text-lg font-light leading-relaxed">
-                    Your booking request for <span className="text-white font-medium">{packageName}</span> has been securely logged. Our team will contact you shortly.
+                    Your booking request for <span className="text-white font-medium">{packageName}</span> has been received. Our team will contact you shortly to confirm.
                 </p>
                 <button
                     onClick={() => setStatus("idle")}
                     className="mt-8 text-blue-400 font-mono text-xs uppercase tracking-[0.3em] hover:text-white transition-colors"
                 >
-                    [ Send Another Response ]
+                    Send Another Request
                 </button>
             </motion.div>
         );
     }
+
+    // Generate hourly time slots from 8 AM to 5 PM
+    const timeSlots = [
+        "08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
+        "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM"
+    ];
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 relative group">
@@ -75,7 +81,7 @@ export default function BookingForm({ packageName }: { packageName: string }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
                 <div className="space-y-2">
                     <label className="text-[10px] font-mono text-blue-500/60 uppercase tracking-[0.4em] ml-2 flex items-center gap-1">
-                        PilotName <span className="text-red-500">*</span>
+                        Full Name <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
@@ -91,7 +97,7 @@ export default function BookingForm({ packageName }: { packageName: string }) {
 
                 <div className="space-y-2">
                     <label className="text-[10px] font-mono text-blue-500/60 uppercase tracking-[0.4em] ml-2 flex items-center gap-1">
-                        SecureEmail <span className="text-red-500">*</span>
+                        Email Address <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
@@ -107,7 +113,7 @@ export default function BookingForm({ packageName }: { packageName: string }) {
 
                 <div className="space-y-2">
                     <label className="text-[10px] font-mono text-blue-500/60 uppercase tracking-[0.4em] ml-2 flex items-center gap-1">
-                        PhoneContact <span className="text-red-500">*</span>
+                        Phone Number <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
@@ -123,7 +129,7 @@ export default function BookingForm({ packageName }: { packageName: string }) {
 
                 <div className="space-y-2">
                     <label className="text-[10px] font-mono text-blue-500/60 uppercase tracking-[0.4em] ml-2 flex items-center gap-1">
-                        VehicleModel <span className="text-red-500">*</span>
+                        Vehicle Model <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
@@ -141,7 +147,7 @@ export default function BookingForm({ packageName }: { packageName: string }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
                 <div className="space-y-2">
                     <label className="text-[10px] font-mono text-blue-500/60 uppercase tracking-[0.4em] ml-2 flex items-center gap-1">
-                        TargetDate <span className="text-red-500">*</span>
+                        Preferred Date <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
@@ -164,7 +170,7 @@ export default function BookingForm({ packageName }: { packageName: string }) {
 
                 <div className="space-y-2">
                     <label className="text-[10px] font-mono text-blue-500/60 uppercase tracking-[0.4em] ml-2 flex items-center gap-1">
-                        TargetTime <span className="text-red-500">*</span>
+                        Preferred Time <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
@@ -175,18 +181,18 @@ export default function BookingForm({ packageName }: { packageName: string }) {
                             className={`w-full bg-black/40 border ${errors.preferredTime ? 'border-red-500/50' : 'border-white/5'} rounded-2xl py-4 pl-12 pr-4 text-white appearance-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 transition-all outline-none backdrop-blur-xl cursor-pointer`}
                         >
                             <option value="" className="bg-neutral-900 text-gray-500">Select Slot</option>
-                            <option value="08:00 AM" className="bg-neutral-900">08:00 AM</option>
-                            <option value="10:00 AM" className="bg-neutral-900">10:00 AM</option>
-                            <option value="12:00 PM" className="bg-neutral-900">12:00 PM</option>
-                            <option value="02:00 PM" className="bg-neutral-900">02:00 PM</option>
-                            <option value="04:00 PM" className="bg-neutral-900">04:00 PM</option>
+                            {timeSlots.map((slot) => (
+                                <option key={slot} value={slot} className="bg-neutral-900">
+                                    {slot}
+                                </option>
+                            ))}
                         </select>
                     </div>
                 </div>
             </div>
 
             <div className="space-y-2 relative z-10">
-                <label className="text-[10px] font-mono text-blue-500/60 uppercase tracking-[0.4em] ml-2">AdditionalIntel</label>
+                <label className="text-[10px] font-mono text-blue-500/60 uppercase tracking-[0.4em] ml-2">Notes / Special Requests</label>
                 <div className="relative">
                     <div className="absolute left-4 top-4 text-gray-500">
                         <MessageSquare size={18} />
@@ -209,7 +215,7 @@ export default function BookingForm({ packageName }: { packageName: string }) {
                         <Loader2 className="w-6 h-6 animate-spin" />
                     ) : (
                         <>
-                            Initiate Booking
+                            Request Appointment
                             <Send className="w-5 h-5 group-hover:translate-x-2 group-hover:-translate-y-1 transition-transform" />
                         </>
                     )}
@@ -218,7 +224,7 @@ export default function BookingForm({ packageName }: { packageName: string }) {
 
             {status === "error" && (
                 <p className="text-red-400 text-center text-xs font-mono uppercase tracking-widest mt-4">
-                    Transmission Fault. Please verify your connection and try again.
+                    Unable to send request. Please check your connection.
                 </p>
             )}
         </form>
