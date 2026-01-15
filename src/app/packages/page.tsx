@@ -253,18 +253,12 @@ export default function PackagesPage() {
             {/* Hero Section */}
             <PageHero
                 badgeIcon={Zap}
-                badgeText="SYSTEM.PRICING_MATRIX"
+                badgeText="PACKAGES & PRICING"
                 title="ELITE"
                 highlightedTitle="PACKAGES"
                 subtitle="Precision Engineered Detailing Perfected. Discover the science of restoration."
                 backgroundImage="https://images.unsplash.com/photo-1620706122118-206fc3c15562?q=80&w=2000&auto=format&fit=crop"
-            >
-                <div className="flex gap-4 mt-12 justify-center">
-                    <div className="h-1.5 w-24 bg-blue-600 rounded-full shadow-[0_0_15px_rgba(37,99,235,0.5)]"></div>
-                    <div className="h-1.5 w-12 bg-blue-600/30 rounded-full"></div>
-                    <div className="h-1.5 w-6 bg-blue-600/10 rounded-full"></div>
-                </div>
-            </PageHero>
+            />
 
             {/* Main Packages Section */}
             <section className="py-24 relative">

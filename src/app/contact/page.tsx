@@ -39,7 +39,7 @@ export default function ContactPage() {
         <div className="bg-black min-h-screen">
             <PageHero
                 badgeIcon={MessageSquare}
-                badgeText="DIRECT.COMMS_v1.0"
+                badgeText="GET IN TOUCH"
                 title="GET IN"
                 highlightedTitle="TOUCH"
                 subtitle="Get in touch for quotes, inquiries, or just to say hello. Our team is ready to assist you in elevating your vehicle's status."
@@ -124,5 +124,6 @@ export default function ContactPage() {
                     </div>
                 </div>
             </div>
-            );
+        </div>
+    );
 }

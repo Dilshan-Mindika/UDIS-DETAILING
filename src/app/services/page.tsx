@@ -229,7 +229,7 @@ export default function ServicesPage() {
             {/* Hero Section */}
             <PageHero
                 badgeIcon={Settings}
-                badgeText="EXPERT.AUTO_CARE_v1.0"
+                badgeText="EXPERT AUTO CARE"
                 title="OUR"
                 highlightedTitle="SERVICES"
                 subtitle="Professional Auto Detailing for a Flawless Finish. Meticulous care for every inch of your vehicle."

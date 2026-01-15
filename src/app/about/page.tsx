@@ -17,7 +17,7 @@ export default function AboutPage() {
             {/* Hero Section */}
             <PageHero
                 badgeIcon={Award}
-                badgeText="Legacy.Excellence_v4.2"
+                badgeText="LEGACY OF EXCELLENCE"
                 title="PASSION FOR"
                 highlightedTitle="PERFECTION"
                 subtitle="We are dedicated to bringing out the best in your vehicle with precision detailing, premium products, and an unmatched eye for perfection."

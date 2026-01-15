@@ -273,7 +273,7 @@ export default function ProjectsPage() {
             {/* Hero Section */}
             <PageHero
                 badgeIcon={Camera}
-                badgeText="Archive.Showcase_v2.5"
+                badgeText="PROJECT SHOWCASE"
                 title="OUR"
                 highlightedTitle="PROJECTS"
                 subtitle="Witness the science of restoration. Discover our showcased portfolio of Auto Detailing Excellence."

@@ -118,14 +118,11 @@ export function Navbar() {
 
                     {/* Left: Logo */}
                     <Link href="/" className="flex items-center gap-2 md:gap-4 group relative z-10 flex-shrink-0">
-                        <div className="relative w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-gradient-to-br from-gray-900 to-black rounded-lg md:rounded-xl border border-white/20 group-hover:border-primary/50 transition-colors duration-500 overflow-hidden shadow-lg">
-                            <div className="absolute inset-0 bg-primary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-md"></div>
-                            <span className="text-white font-bold text-lg md:text-xl font-orbitron relative z-10">U</span>
-                        </div>
-                        <div className="flex flex-col leading-none">
-                            <span className="text-lg md:text-xl font-bold font-orbitron tracking-tighter text-white drop-shadow-md">UDI'S</span>
-                            <span className="text-[8px] font-bold text-primary tracking-[0.2em] md:tracking-[0.3em] uppercase opacity-90 group-hover:tracking-[0.4em] transition-all duration-500">Detailing</span>
-                        </div>
+                        <img
+                            src="/images/logo.png"
+                            alt="UDI'S Detailing Logo"
+                            className="h-10 w-auto object-contain group-hover:drop-shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all duration-300"
+                        />
                     </Link>
 
                     {/* === TABLET CENTERED SECTION (Visible on md, hidden on lg and sm) === */}

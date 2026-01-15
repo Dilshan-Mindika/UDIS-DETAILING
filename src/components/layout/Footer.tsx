@@ -17,9 +17,11 @@ export function Footer() {
                     {/* Brand Column (Span 4) */}
                     <div className="lg:col-span-4">
                         <Link href="/" className="inline-block mb-6 group">
-                            <span className="text-3xl font-black font-orbitron text-white tracking-wider group-hover:opacity-80 transition-opacity">
-                                UDI'S <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400">DETAILING</span>
-                            </span>
+                            <img
+                                src="/images/logo.png"
+                                alt="UDI'S Detailing Logo"
+                                className="h-12 w-auto object-contain brightness-100 group-hover:drop-shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all duration-300"
+                            />
                         </Link>
                         <p className="text-gray-400 leading-relaxed mb-6 max-w-sm">
                             Professional mobile car detailing serving your location—home or work. Specializing in interior deep cleaning, exterior polishing, and full vehicle restoration.
