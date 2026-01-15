@@ -117,12 +117,23 @@ export function Navbar() {
                     <div className="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-45deg] animate-[shine_6s_infinite]"></div>
 
                     {/* Left: Logo */}
-                    <Link href="/" className="flex items-center gap-2 md:gap-4 group relative z-10 flex-shrink-0">
-                        <img
-                            src="/images/logo.png"
-                            alt="UDI'S Detailing Logo"
-                            className="h-10 w-auto object-contain group-hover:drop-shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all duration-300"
-                        />
+                    <Link href="/" className="flex items-center gap-3 md:gap-4 group relative z-10 flex-shrink-0">
+                        <div className="relative">
+                            <div className="absolute inset-0 bg-blue-500/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <img
+                                src="/images/logo.png"
+                                alt="UDI'S Detailing Logo"
+                                className="h-10 md:h-12 w-auto object-contain relative z-10 drop-shadow-[0_0_10px_rgba(0,0,0,0.5)]"
+                            />
+                        </div>
+                        <div className="flex flex-col leading-none">
+                            <span className="text-xl md:text-2xl font-black font-orbitron tracking-widest text-white drop-shadow-md group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-400 transition-all duration-300">
+                                UDI'S
+                            </span>
+                            <span className="text-[10px] font-bold text-blue-500 tracking-[0.3em] uppercase opacity-90 group-hover:tracking-[0.4em] group-hover:text-blue-400 transition-all duration-500">
+                                DETAILING
+                            </span>
+                        </div>
                     </Link>
 
                     {/* === TABLET CENTERED SECTION (Visible on md, hidden on lg and sm) === */}

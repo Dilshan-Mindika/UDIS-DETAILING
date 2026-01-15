@@ -6,10 +6,11 @@ export interface ButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     asChild?: boolean
     variant?: "default" | "outline" | "ghost" | "gold"
+    size?: "default" | "sm" | "lg" | "icon"
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className, variant = "default", asChild = false, ...props }, ref) => {
+    ({ className, variant = "default", size = "default", asChild = false, ...props }, ref) => {
 
         // Simple variant logic
         const variants = {
@@ -19,11 +20,18 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             gold: "bg-custom-gold text-black hover:brightness-110 font-bold",
         }
 
-        const baseStyles = "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2"
+        const sizes = {
+            default: "h-10 px-4 py-2",
+            sm: "h-9 rounded-md px-3",
+            lg: "h-11 rounded-md px-8",
+            icon: "h-10 w-10",
+        }
+
+        const baseStyles = "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
 
         return (
             <button
-                className={cn(baseStyles, variants[variant], className)}
+                className={cn(baseStyles, variants[variant], sizes[size], className)}
                 ref={ref}
                 {...props}
             />

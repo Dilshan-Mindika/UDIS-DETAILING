@@ -16,15 +16,26 @@ export function Footer() {
 
                     {/* Brand Column (Span 4) */}
                     <div className="lg:col-span-4">
-                        <Link href="/" className="inline-block mb-6 group">
-                            <img
-                                src="/images/logo.png"
-                                alt="UDI'S Detailing Logo"
-                                className="h-12 w-auto object-contain brightness-100 group-hover:drop-shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all duration-300"
-                            />
+                        <Link href="/" className="inline-flex items-center gap-4 mb-6 group">
+                            <div className="relative">
+                                <div className="absolute inset-0 bg-blue-500/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                <img
+                                    src="/images/logo.png"
+                                    alt="UDI'S Detailing Logo"
+                                    className="h-14 w-auto object-contain brightness-100 relative z-10"
+                                />
+                            </div>
+                            <div className="flex flex-col leading-none">
+                                <span className="text-2xl font-black font-orbitron text-white tracking-widest group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-cyan-400 transition-all">
+                                    UDI'S
+                                </span>
+                                <span className="text-xs font-bold text-blue-500 tracking-[0.35em] uppercase group-hover:text-cyan-400 transition-colors">
+                                    DETAILING
+                                </span>
+                            </div>
                         </Link>
                         <p className="text-gray-400 leading-relaxed mb-6 max-w-sm">
-                            Professional mobile car detailing serving your location—home or work. Specializing in interior deep cleaning, exterior polishing, and full vehicle restoration.
+                            Professional mobile car detailing serving your location-home or work. Specializing in interior deep cleaning, exterior polishing, and full vehicle restoration.
                         </p>
 
                         {/* Socials */}
@@ -118,7 +129,7 @@ export function Footer() {
                 {/* Bottom Bar */}
                 <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-gray-500 text-xs tracking-wide">
-                        © 2025 UDI'S DETAILING. All rights reserved.
+                        © 2026 UDI'S DETAILING. All rights reserved.
                     </p>
                     <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/10 backdrop-blur-md">
                         <span className="text-gray-500 text-xs uppercase tracking-wider">Powered by</span>

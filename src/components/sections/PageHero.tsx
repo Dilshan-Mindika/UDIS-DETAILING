@@ -71,17 +71,6 @@ export function PageHero({
                             <span className="text-[10px] font-mono text-blue-400 tracking-[0.4em] uppercase font-black">{badgeText}</span>
                         </motion.div>
 
-                        {/* Brand Supertitle - Added globally */}
-                        <div className="mb-4 overflow-hidden">
-                            <motion.span
-                                initial={{ y: 20, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                transition={{ delay: 0.2 }}
-                                className="block text-blue-500 font-bold tracking-[0.3em] text-sm md:text-base font-orbitron"
-                            >
-                                UDI'S DETAILING
-                            </motion.span>
-                        </div>
 
                         {/* Title - Adjusted sizing and leading for better visibility */}
                         <h1 className="text-5xl md:text-8xl font-black font-orbitron text-white uppercase tracking-tighter leading-[1.1] mb-8 drop-shadow-2xl">
